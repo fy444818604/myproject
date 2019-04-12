@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Toastr</title>
+    <!--<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="plugins/toastr-master/toastr.min.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="page-title">基本示例</h1>
+                    <div class="box-model type1">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>Toastr有 <code>info</code> 和 <code>warning</code> <code>success</code> <code>error</code> 4种类型。 </p>
+                                <div class="btn-group">
+                                    <button v-for="item in btnGroup" class="btn btn-outline" :class="item.type" @click="item.func">{{item.text}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="page-title">方位</h1>
+                    <div class="box-model type2">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>Toastr有6种方位类型。 </p>
+                                <div class="btn-group">
+                                    <button v-for="item in btnGroup" class="btn btn-outline" :class="item.type" @click="item.func">{{item.text}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="page-title">其它配置</h1>
+                    <div class="box-model type3">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>Toastr有可关闭、进度条等类型。 </p>
+                                <div class="btn-group">
+                                    <button v-for="item in btnGroup" class="btn btn-outline" :class="item.type" @click="item.func">{{item.text}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/toastr-master/toastr.min.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'Toastr',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+    var btnGroup1 = new Vue({
+        el:'.type1',
+        data:{
+            btnGroup:[
+                {type:'btn-success',text:'success类型',func:success},
+                {type:'btn-info',text:'info类型',func:info},
+                {type:'btn-warning',text:'warning类型',func:warning},
+                {type:'btn-danger',text:'error类型',func:error}
+            ]
+        }
+    });
+
+    var btnGroup2 = new Vue({
+        el:'.type2',
+        data:{
+            btnGroup:[
+                {type:'btn-primary',text:'右上',func:success},
+                {type:'btn-primary',text:'右下',func:btmRight},
+                {type:'btn-primary',text:'左上',func:topLeft},
+                {type:'btn-primary',text:'左下',func:btmLeft},
+                {type:'btn-primary',text:'顶部撑满',func:topFull},
+                {type:'btn-primary',text:'底部撑满',func:btmFull}
+            ]
+        }
+    });
+
+    var btnGroup3 = new Vue({
+        el:'.type3',
+        data:{
+            btnGroup:[
+                {type:'btn-primary',text:'可关闭',func:close},
+                {type:'btn-primary',text:'进度条',func:progress},
+            ]
+        }
+    });
+    function success(){
+        parent.toastr.success('你成功了！');
+    }
+    function info(){
+        parent.toastr.info('你有新消息')
+    }
+    function warning(){
+        parent.toastr.warning('警告！')
+    }
+    function error(){
+        parent.toastr.error('错误！')
+    }
+    function btmRight(){
+        parent.toastr.options = {
+            "positionClass": "toast-bottom-right"
+        };
+        parent.toastr.success('你成功了！')
+    }
+    function topLeft(){
+        parent.toastr.options = {
+            "positionClass": "toast-top-left"
+        };
+        parent.toastr.success('你成功了！')
+    }
+    function btmLeft(){
+        parent.toastr.options = {
+            "positionClass": "toast-bottom-left"
+        };
+        parent.toastr.success('你成功了！')
+    }
+    function topFull(){
+        parent.toastr.options = {
+            "positionClass": "toast-top-full-width"
+        };
+        parent.toastr.success('你成功了！')
+    }
+    function btmFull(){
+        parent.toastr.options = {
+            "positionClass": "toast-bottom-full-width"
+        };
+        parent.toastr.success('你成功了！')
+    }
+    function close(){
+        parent.toastr.options = {
+            "closeButton": true
+        };
+        parent.toastr.success('你成功了！');
+    }
+    function progress(){
+        toastr.options = {
+            closeButton: false,
+            debug: false,
+            progressBar: true,
+            positionClass: "toast-bottom-right",
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "2000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+        toastr.success('你成功了a ！');
+    }
+
+</script>
+</body>
+</html>

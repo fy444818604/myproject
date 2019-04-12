@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        *{
+            color: #ffffff;
+            font-size: 24px;
+            box-sizing: border-box;
+        }
+        .body-wrap{
+            height: 100%;
+            height: 100%;
+            background: url("img/bg.jpg") no-repeat;
+            overflow: hidden;
+        }
+        .brand-index-head{
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 40px;
+        }
+        .brand-index-title{
+            display: flex;
+            align-items: center;
+            width: 770px;
+            background: url("img/bg1.png") no-repeat;
+            padding-left: 40px;
+        }
+        .brand-index-title>div{
+            font-size: 36px;
+            color: #fefefe;
+            margin-left: 5px;
+        }
+        .brand-index-title>img{
+            height: 48px;
+            width: 48px;
+        }
+        .brand-index-daily{
+            display: flex;
+            align-items: center;
+        }
+        .brand-index-weather{
+            display: flex;
+            align-items: center;
+            margin-right: 72px;
+        }
+        .brand-index-weather>div{
+            margin-left: 12px;
+        }
+        .brand-index-weather>div>p{
+            font-size: 30px;
+        }
+        .brand-index-icon{
+            background: url("img/base_icon.png") no-repeat;
+        }
+        .weacher-icon{
+            background-position: -1px -1px;
+            height: 52px;
+            width: 66px;
+            display: inline-block;
+        }
+        .brand-index-date div,.brand-index-date span{
+            font-size: 30px;
+        }
+        .brand-box{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            background-color: rgba(0,0,0,.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .class-name-box{
+            width: 517px;
+            height: 188px;
+        }
+        .class-name{
+            font-size: 44px;
+            color: #fcec24;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+        }
+        .class-manger{
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+            margin-top: 22px;
+        }
+        .class-name-box .brand-box{
+            align-items: center;
+        }
+        .brand-index-body{
+            padding: 32px 20px 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .class-student-box{
+            width: 517px;
+            height: 282px;
+            margin-top: 16px;
+        }
+        .class-student-box-title{
+            font-size: 30px;
+        }
+        .class-student-img>img{
+            border-radius: 100%;
+            margin-top: 22px;
+        }
+        .read-star{
+            background-image: url("img/base_icon.png");
+            background-position: -2px -126px;
+            width: 251px;
+            height: 67px;
+            text-align: center;
+            font-size: 24px;
+            padding-top: 25px;
+            position: absolute;
+            bottom: -30px;
+            right: -55px;
+        }
+        .class-student-list>li{
+            text-align: center;
+            position: relative;
+            padding-top: 24px;
+        }
+        .class-student-list>li{
+            display: none;
+        }
+        .class-student-list>li.active{
+            display: block;
+        }
+        .student-dot{
+            position: absolute;
+            right: 22px;
+            top: 20px;
+            display: flex;
+        }
+        .dot{
+            background-color: rgba(255,255,255,.5);
+            height: 12px;
+            width: 12px;
+            border-radius: 100%;
+            margin-left: 6px;
+        }
+        .dot.active{
+            background-color: rgba(255,255,255,1);
+        }
+        .banner-wrap{
+            width: 887px;
+            height: 485px;
+            margin: 0 16px 16px 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-wrap img{
+            width: 100%;
+            height: 100%;
+        }
+        .count-down-box>.brand-box{
+            padding: 22px 28px;
+            width: 444px;
+            height: 188px;
+        }
+        .count-down-box>.brand-box>p{
+            font-size: 24px;
+            width: 100%;
+        }
+        .count-down-box>.brand-box>div>ul{
+            display: flex;
+            margin-top: 17px;
+            justify-content: space-between;
+            width: calc(100% - 24px)
+        }
+        .count-down-box>.brand-box>div>ul>li{
+            width: 108px;
+            height: 98px;
+            background-color: rgba(65,191,214,.3);
+            border-radius: 10px;
+            font-size: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("img/base_icon.png");
+            background-repeat: no-repeat;
+        }
+        .count-down-box>.brand-box>div{
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .count-down-box>.brand-box>div>ul>li:nth-child(1){
+            background-position: -1px -218px;
+        }
+        .count-down-box>.brand-box>div>ul>li:nth-child(2){
+            background-position: -125px -218px;
+        }
+        .count-down-box>.brand-box>div>ul>li:nth-child(3){
+            background-position: -249px -218px;
+        }
+        .notice-wrap-box{
+            height: 282px;
+            width: 444px;
+            margin-top: 16px;
+        }
+        .notice-wrap-box>.brand-box{
+            padding: 30px 28px;
+        }
+        .module-name{
+            font-size: 30px;
+            color: #fceb24;
+            text-align: center;
+            width: 100%;
+        }
+        .notice-cont{
+            line-height: 48px;
+            font-size: 24px;
+            height: 150px;
+            overflow : hidden;
+        }
+        .course-list-box{
+            width: 517px;
+            height: 377px;
+        }
+        .course-list-box>.brand-box{
+            padding: 30px 50px;
+        }
+        .course-time{
+            font-size: 26px;
+            color: #c0d0e5;
+            text-align: center;
+            width: 100%;
+            margin: 5px 0 45px 0;
+        }
+        .course-details{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 190px;
+        }
+        .course-daily{
+            padding: 4px 0;
+        }
+        .course-daily *{
+            font-size: 24px;
+        }
+        .course-daily>ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .course-daily>ul>li>span:first-child:after{
+            content: ':';
+            padding-left: 2px;
+        }
+        .course-ul>li{
+            display: flex;
+            flex-direction: column;
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            width: calc(100% - 100px);
+        }
+        .course-ul>li.active{
+            visibility:visible;
+            opacity: 1;
+        }
+        .teacher-cont{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+        }
+        .teacher-cont>div:first-child img{
+            border-radius: 100%;
+        }
+        .teacher-cont>div:last-child{
+            font-size: 24px;
+        }
+        .activity-icon{
+            display: inline-block;
+            width: 51px;
+            height: 40px;
+            background-position: -1px -63px;
+            margin-right: 14px;
+        }
+        .school-activity{
+            margin: 0 16px;
+            width: 435px;
+            height: 376px;
+        }
+        .school-activity .brand-box{
+            padding: 30px 28px;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .activity-name{
+            display: flex;
+            margin: 38px 0 36px 0;
+        }
+        .activity-name + div{
+            padding-left: 51px;
+        }
+        .activity-name + div p{
+            color: #c0d0e5;
+            line-height: 40px;
+        }
+        .morality-box{
+            width: 436px;
+            height: 376px;
+        }
+        .morality-box .brand-box{
+            padding: 34px 28px;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+        .morality-rank{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px 32px 15px;
+            border-bottom: 1px solid #5177aa;
+            margin-right: 16px;
+        }
+        .morality-rank>div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .morality-rank>div>p{
+            color: #fcec24;
+        }
+        .morality-rank>div>p:first-child{
+            font-size: 34px;
+        }
+        .morality-goal{
+            margin-top: 10px;
+        }
+        .morality-goal>ul{
+            display: flex;
+            flex-direction: column;
+        }
+        .morality-goal>ul>li{
+            display: flex;
+            justify-content: space-between;
+            line-height: 64px;
+        }
+        .news-row{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .news-box{
+            width: 444px;
+            height: 376px;
+            margin-left: 16px;
+        }
+        .news-box .brand-box{
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            padding: 30px 28px;
+        }
+        .new-lump{
+            padding: 0 4px;
+            flex: 0 0 48px;
+            height: 30px;
+            border-radius: 4px;
+            background-color: #cf5e5c;
+            text-align: center;
+            font-size: 20px;
+            line-height: 25px;
+            margin-right: 10px;
+            margin-top: 9px;
+        }
+        .news-row>div:last-child{
+            line-height: 40px;
+        }
+        .horn-icon{
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+            background-position: -187px -63px;
+            margin-right: 16px;
+        }
+        .notice-bottom{
+            display: flex;
+            height: 80px;
+            align-items: center;
+        }
+        .icon-msg{
+            width: 49px;
+            height: 49px;
+            display: inline-block;
+            background-position: -124px -63px;
+            margin-right: 27px;
+        }
+        .icon-face{
+            width: 46px;
+            height: 46px;
+            display: inline-block;
+            background-position: -63px -63px;
+            margin: 0 46px;
+        }
+        .brand-tips{
+            position: absolute;
+            right: 0;
+            bottom: 24px;
+            width: 222px;
+            height: 80px;
+            background: url("img/bg2.png") no-repeat;
+            display: flex;
+            align-items: center;
+        }
+        .hot-event .event-item{
+            width: 887px;
+            height: 485px;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+        }
+        .hot-event .event-item .banner{
+            display: block;
+        }
+        .hot-event .event-item img{
+            -webkit-box-reflect: below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(85%,transparent),to(rgba(255,255,255,.2)));
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-wrap">
+        <div class="brand-index-head">
+            <div class="brand-index-title">
+                <img src="img/logo.png" alt=""/>
+                <div>{{schoolName}}</div>
+            </div>
+            <div class="brand-index-daily">
+                <div class="brand-index-weather">
+                    <i class="brand-index-icon weacher-icon"></i>
+                    <div>
+                        <p>晴</p>
+                        <p>20度</p>
+                    </div>
+                </div>
+                <div class="brand-index-date">
+                    <div>{{dailyTime}}</div>
+                    <div>
+                        <span>{{dailyData}}</span>
+                        <span>{{dailyDay}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="brand-index-body">
+            <div>
+                <div class="class-name-box">
+                    <div class="brand-box">
+                        <div>
+                            <p class="class-name">{{className}}</p>
+                            <p class="class-manger">班主任:{{teacherBoss}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-student-box">
+                    <div class="brand-box">
+                        <ul class="student-dot">
+                            <li class="dot active"></li>
+                            <li class="dot"></li>
+                        </ul>
+                        <div>
+                            <ul class="class-student-list">
+                                <li class="active">
+                                    <div class="class-student-box-title">阅读之星</div>
+                                    <div class="class-student-img">
+                                        <img :src="read.img" alt=""/>
+                                    </div>
+                                    <div class="read-star">
+                                        {{read.name}}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="class-student-box-title">今日值日</div>
+                                    <div class="class-student-img">
+                                        <img :src="duty.img" alt=""/>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        {{duty.name}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-wrap" id="inner">
+                <div class="hot-event">
+                    <div class="event-item" v-for="item in bannerList">
+                        <a :href="item.href" class="banner">
+                            <img :src="item.img" alt="" class="photo"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="count-down-box">
+                       <div class="brand-box">
+                           <p>距离中考还有</p>
+                           <div>
+                               <ul>
+                                   <li>1</li>
+                                   <li>5</li>
+                                   <li>3</li>
+                               </ul>
+                               <div style="margin-left: 10px;">天</div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="notice-wrap-box">
+                        <div class="brand-box">
+                            <p class="module-name">通知</p>
+                            <div class="notice-cont">{{notice}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="course-list-box">
+                    <div class="brand-box">
+                        <div style="width: 100%">
+                            <ul class="course-ul">
+                                <li class="active">
+                                    <p class="module-name">第{{currentClass.section}}节:{{currentClass.courseName}}</p>
+                                    <div class="course-time">
+                                        {{currentClass.startTime}}～{{currentClass.endTime}}
+                                    </div>
+                                    <div class="course-details">
+                                        <div class="course-daily">
+                                            <ul>
+                                                <li>
+                                                    <span>实到</span>
+                                                    <span>{{currentClass.reality}}人/</span>
+                                                    <span>{{currentClass.should}}人</span>
+                                                </li>
+                                                <li>
+                                                    <span>迟到</span>
+                                                    <span>{{currentClass.late}}人</span>
+                                                </li>
+                                                <li>
+                                                    <span>请假</span>
+                                                    <span>{{currentClass.holiday}}人</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="teacher-cont">
+                                            <div>
+                                                <img :src="currentClass.teacherIcon" alt=""/>
+                                            </div>
+                                            <div>
+                                                {{currentClass.teacherName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="module-name">第{{nextClass.section}}节:{{nextClass.courseName}}</p>
+                                    <div class="course-time">
+                                        {{nextClass.startTime}}～{{nextClass.endTime}}
+                                    </div>
+                                    <div class="course-details">
+                                        <div class="course-daily">
+                                            <ul>
+                                                <li>
+                                                    <span>实到</span>
+                                                    <span>{{nextClass.reality}}人/</span>
+                                                    <span>{{nextClass.should}}人</span>
+                                                </li>
+                                                <li>
+                                                    <span>迟到</span>
+                                                    <span>{{nextClass.late}}人</span>
+                                                </li>
+                                                <li>
+                                                    <span>请假</span>
+                                                    <span>{{nextClass.holiday}}人</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="teacher-cont">
+                                            <div>
+                                                <img :src="nextClass.teacherIcon" alt=""/>
+                                            </div>
+                                            <div>
+                                                {{nextClass.teacherName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <ul class="student-dot">
+                                    <li class="dot active"></li>
+                                    <li class="dot"></li>
+                                </ul>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="school-activity">
+                    <div class="brand-box">
+                        <p class="module-name">校园活动</p>
+                        <div class="activity-name">
+                            <i class="brand-index-icon activity-icon"></i>
+                            <div style="line-height: 40px">{{activity.name}}</div>
+                        </div>
+                        <div>
+                            <p>{{activity.startTime}}至{{activity.endTime}}</p>
+                            <p>{{activity.num}}人参与</p>
+                            <p>进行中</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="morality-box">
+                    <div class="brand-box">
+                        <div class="morality-rank">
+                            <div>
+                                <p>{{morality.rank}}</p>
+                                <p>德育排名</p>
+                            </div>
+                            <div>
+                                <p>{{morality.goal}}</p>
+                                <p>德育得分</p>
+                            </div>
+                        </div>
+                        <div class="morality-goal">
+                            <ul>
+                                <li>
+                                    <div>眼保健操</div>
+                                    <div>-{{morality.list[0]}}分</div>
+                                </li>
+                                <li>
+                                    <div>教室卫生</div>
+                                    <div>-{{morality.list[0]}}分</div>
+                                </li>
+                                <li>
+                                    <div>锻炼出操</div>
+                                    <div>-{{morality.list[0]}}分</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="news-box">
+                    <div class="brand-box">
+                        <p class="module-name">新闻</p>
+                        <div class="news-row" style="margin-top: 36px;">
+                            <div class="new-lump">new</div>
+                            <div>{{news[0]}}</div>
+                        </div>
+                        <div class="news-row" style="margin-top: 60px;">
+                            <div class="new-lump">hot</div>
+                            <div>{{news[1]}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notice-bottom">
+                <i class="brand-index-icon horn-icon"></i>
+                <div>关于开展全校消防演练的通知,接市教育局通知，我校将于3月18日开展全校消防演练，请各班做好相应准备</div>
+            </div>
+        </div>
+        <div class="brand-tips">
+            <i class="icon-face brand-index-icon"></i>
+            <i class="icon-msg brand-index-icon"></i>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+//    (function ($) {
+//        $.fn.extend({
+//            "nav": function (con) {
+//                var $this = $(this), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, n = con.n, i = 0, autoChange = function () {
+//                    $nav.find('li:eq(' + (i + 1 === n ? 0 : i + 1) + ')').addClass('current').siblings().removeClass('current');
+//                    $this.find('.event-item:eq(' + i + ')').css('display', 'none').end().find('.event-item:eq(' + (i + 1 === n ? 0 : i + 1) + ')').css({
+//                        display: 'block',
+//                        opacity: 0
+//                    }).animate({opacity: 1}, a, function () {
+//                        i = i + 1 === n ? 0 : i + 1;
+//                    }).siblings('.event-item').css({display: 'none', opacity: 0});
+////                    console.log($('.event-item').length)
+//                }, st = setInterval(autoChange, t);
+//                $this.hover(function () {
+//                    clearInterval(st);
+//                    return false;
+//                }, function () {
+//                    st = setInterval(autoChange, t);
+//                    return false;
+//                }).find('.switch-nav>a').bind('click', function () {
+//                    var current = $nav.find('.current').index();
+//                    i = $(this).attr('class') === 'prev' ? current - 2 : current;
+//                    autoChange();
+//                    return false;
+//                }).end().find('.switch-tab>li').bind('click', function () {
+//                    i = $(this).index() - 1;
+//                    autoChange();
+//                    return false;
+//                });
+//                return $this;
+//            }
+//        });
+//    }(jQuery));
+    var index = new Vue({
+        el:'.body-wrap',
+        data:{
+            schoolName:'民大附中乐山共美实验中学',
+            dailyTime:'00:00',
+            className:'高一（5）班',
+            teacherBoss:'李欣楠',
+            bannerList:[
+                {img:'img/city-1.jpg',href:'#'},
+//                {img:'img/city-2.jpg',href:'#'},
+//                {img:'img/city-3.jpg',href:'#'},
+//                {img:'img/city-4.jpg',href:'#'},
+                {img:'img/city-5.jpg',href:'#'}
+            ],
+            read:{name:'叶明熙',img:'img/student_1.jpg'},
+            duty:{name:'冯溪瑶',img:'img/student_2.jpg'},
+            notice:'第七届说课比赛在本校教学楼副楼录播教室举行。经过三天的激烈角逐，老师们留下了缤纷斑斓的风采。第七届说课比赛在本校教学楼副楼录播教室举行。经过三天的激烈角逐，老师们留下了缤纷斑斓的风采',
+            currentClass:{courseName:'数学',section:'二',startTime:'09:45',endTime:'10:15',reality:32,should:35,late:2,holiday:2,teacherName:'曾泳瑜',teacherIcon:'img/teacher_1.jpg'},
+            nextClass:{courseName:'语文',section:'三',startTime:'10:25',endTime:'11:10',reality:0,should:35,late:0,holiday:0,teacherName:'蔡梓栋',teacherIcon:'img/teacher_2.jpg'},
+            activity:{name:'第三届校园优秀作文大赛投票评选活动',startTime:'2019-02-20',endTime:'2019-03-05',num:50},
+            morality:{rank:1,goal:90,list:[2,2,2]},
+            news:['我校学生在英国皇家化学新星挑战赛中喜获全国金奖','我校教师喜获 “四川省第十四届教学新秀”称号']
+        },
+        mounted: function () {
+            var _this = this;
+            setInterval(function(){
+                var date = new Date();
+                var hour = date.getHours();
+                var min=date.getMinutes();
+                _this.dailyTime = hour+":"+min
+            },1000);
+            this.nav({ t: 5000, a: 2000, n:_this.bannerList.length});
+            var index;
+            setInterval(function(){
+                index = $('.course-ul>li.active').index();
+                $('.course-ul>li').eq(index).css({visibility:'hidden',opacity:0});
+                $('.course-ul>li').eq(index).siblings('li').css('visibility','visible');
+                $('.course-ul>li').eq(index).siblings('li').animate({opacity:1},500);
+                $('.course-ul>li').eq(index).removeClass('active');
+                $('.course-list-box .student-dot>li').eq(index).removeClass('active')
+                $('.course-ul>li').eq(index).siblings('li').addClass('active');
+                $('.course-list-box .student-dot>li').eq(index).siblings('li').addClass('active')
+            },5000)
+            setInterval(function(){
+                index = $('.class-student-list>li.active').index();
+                $('.class-student-list>li').eq(index).css({display:'none',opacity:0});
+                $('.class-student-list>li').eq(index).siblings('li').css('display','block');
+                $('.class-student-list>li').eq(index).siblings('li').animate({opacity:1},500);
+                $('.class-student-list>li').eq(index).removeClass('active');
+                $('.class-student-box .student-dot>li').eq(index).removeClass('active');
+                $('.class-student-list>li').eq(index).siblings('li').addClass('active');
+                $('.class-student-box .student-dot>li').eq(index).siblings('li').addClass('active')
+            },5000)
+        },
+        computed:{
+            dailyData:function(){
+                var date = new Date();
+                var month = date.getMonth()+1;
+                if(month <= 9){
+                    month = "0"+ month
+                }
+                var day = date.getDate();
+                if(day <= 9){
+                    day = "0"+ day
+                }
+                return date.getFullYear()+"/"+month+"/"+day
+            },
+            dailyDay:function(){
+                var date = new Date();
+                var week = ['周日','周一','周二','周三','周四','周五','周六'];
+                return week[date.getDay()]
+            }
+        },
+        methods:{
+            nav:function(con){
+                var $this = $('#inner'), $nav = $this.find('.switch-tab'), t = (con && con.t) || 3000, a = (con && con.a) || 500, n = con.n, i = 0, autoChange = function () {
+                    $nav.find('li:eq(' + (i + 1 === $('.event-item').length ? 0 : i + 1) + ')').addClass('current').siblings().removeClass('current');
+                    $this.find('.event-item:eq(' + i + ')').css('display', 'none').end().find('.event-item:eq(' + (i + 1 === $('.event-item').length ? 0 : i + 1) + ')').css({
+                        display: 'block',
+                        opacity: 0
+                    }).animate({opacity: 1}, a, function () {
+                        i = i + 1 === $('.event-item').length ? 0 : i + 1;
+                    }).siblings('.event-item').css({display: 'none', opacity: 0});
+                    console.log($('.event-item').length)
+                }, st = setInterval(autoChange, t);
+                $this.hover(function () {
+                    clearInterval(st);
+                    return false;
+                }, function () {
+                    st = setInterval(autoChange, t);
+                    return false;
+                }).find('.switch-nav>a').bind('click', function () {
+                    var current = $nav.find('.current').index();
+                    i = $(this).attr('class') === 'prev' ? current - 2 : current;
+                    autoChange();
+                    return false;
+                }).end().find('.switch-tab>li').bind('click', function () {
+                    i = $(this).index() - 1;
+                    autoChange();
+                    return false;
+                });
+                return $this;
+            }
+        }
+    })
+</script>
+</html>

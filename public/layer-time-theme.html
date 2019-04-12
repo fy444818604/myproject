@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>功能演示</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/layui-v2.3.0-rc1/layui/css/layui.css"/>
+    <link rel="stylesheet" href="stylesheet/layui-custom.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h4 class="example-title-3">其它主题</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid130>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">墨绿主题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test29" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">自定义颜色主题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test30" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">格子主题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test31" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">直接嵌套显示</h4>
+            <div class="box-model" pda15>
+                <div class="site-demo-laydate">
+                    <div class="layui-inline" id="test-n1"></div>
+                    <div class="layui-inline" id="test-n2"></div>
+                    <div class="layui-inline" id="test-n3"></div>
+                    <div class="layui-inline" id="test-n4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/layui-v2.3.0-rc1/layui/layui.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'日期时间',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+
+    layui.use(['laydate'],function(){
+        var laydate = layui.laydate;
+
+        //墨绿主题
+        laydate.render({
+            elem: '#test29'
+            ,theme: 'molv'
+        });
+
+        //自定义颜色
+        laydate.render({
+            elem: '#test30'
+            ,theme: '#393D49'
+        });
+
+        //格子主题
+        laydate.render({
+            elem: '#test31'
+            ,theme: 'grid'
+        });
+
+
+        //直接嵌套显示
+        laydate.render({
+            elem: '#test-n1'
+            ,position: 'static'
+        });
+        laydate.render({
+            elem: '#test-n2'
+            ,position: 'static'
+            ,lang: 'en'
+        });
+        laydate.render({
+            elem: '#test-n3'
+            ,type: 'month'
+            ,position: 'static'
+        });
+        laydate.render({
+            elem: '#test-n4'
+            ,type: 'time'
+            ,position: 'static'
+        });
+    })
+</script>
+</html>

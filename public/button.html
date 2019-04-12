@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>按钮</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/color.css"/>
+    <link rel="stylesheet" href="stylesheet/sprites.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="page-header">
+            <h1 class="page-title">{{pageTitle}}</h1>
+            <div class="page-title-btn-group">
+                <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                    <i class="fa fa-position" :class="item.icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="box">
+                <h1 class="page-title">全局</h1>
+                <div class="box-model">
+                    <div class="row">
+                        <h4 class="example-title">默认</h4>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-default btn-block">default</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-e4eaec fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#e4eaec</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-ccd5db fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#ccd5db</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-76838f fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#76838f</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-primary btn-block">Primary</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-62a8ea fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#62a8ea</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-89bceb fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#89bceb</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-4e97d9 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#4e97d9</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-success btn-block">Success</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-46be8a fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#46be8a</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-5cd29d fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#5cd29d</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-36ab7a fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#36ab7a</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-info btn-block">Info</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-57c7d4 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#57c7d4</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-77d6e1 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#77d6e1</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-47b8c6 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#47b8c6</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-warning btn-block">Warning</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-f2a654 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#f2a654</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-f4b066 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#f4b066</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-e79857 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#e79857</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-4 col-xs-12">
+                            <div class="example">
+                                <ul>
+                                    <li class="mb20"><button class="btn btn-danger btn-block">Danger</button></li>
+                                    <li class="mb20">
+                                        <div class="color-box c-f96868 fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">普通</p>
+                                            <span class="font-size-12 grey-600">#f96868</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-fa7a7a fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">鼠标悬停</p>
+                                            <span class="font-size-12 grey-600">#fa7a7a</span>
+                                        </div>
+                                    </li>
+                                    <li class="mb20">
+                                        <div class="color-box c-e9595b fl"></div>
+                                        <div class="ml35">
+                                            <p class="margin-0 grey-600 font-size-14">激活</p>
+                                            <span class="font-size-12 grey-600">#e9595b</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-model">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="example">
+                                <h4 class="example-title-2">幽灵按钮</h4>
+                                <p>通过添加 .btn-outline 类来实现描边效果</p>
+                                <div class="example">
+                                    <button class="btn btn-outline btn-default">Default</button>
+                                    <button class="btn btn-outline btn-primary">Primary</button>
+                                    <button class="btn btn-outline btn-success">Success</button>
+                                    <button class="btn btn-outline btn-info">Info</button>
+                                    <button class="btn btn-outline btn-warning">Warning</button>
+                                    <button class="btn btn-outline btn-danger">Danger</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-model">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="example">
+                                <h4 class="example-title-2">带图标按钮</h4>
+                                <p>通过添加 .btn-flex 类来实现描边效果</p>
+                                <div class="example flex">
+                                    <button class="btn btn-outline btn-default btn-flex"><i class="fy-icon fy-icon-home"></i>Default</button>
+                                    <button class="btn btn-outline btn-primary btn-flex"><i class="fy-icon fy-icon-add"></i>Primary</button>
+                                    <button class="btn btn-outline btn-success btn-flex"><i class="fy-icon fy-icon-search"></i>Success</button>
+                                    <button class="btn btn-outline btn-info btn-flex"><i class="fy-icon fy-icon-address"></i>Info</button>
+                                    <button class="btn btn-outline btn-warning btn-flex"><i class="fy-icon fy-icon-chat"></i>Warning</button>
+                                    <button class="btn btn-outline btn-danger btn-flex"><i class="fy-icon fy-icon-chats"></i>Danger</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'按钮',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    })
+</script>
+</html>

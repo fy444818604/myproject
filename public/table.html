@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}<span id="status"></span></h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="example-title-2" @click="up">基本表格</h4>
+                            <p>在表格上添加 <code>.table</code> 即可</p>
+                            <div class="example">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th v-for="item in table.thead">{{item}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in table.tbody">
+                                        <td v-for="item in item">
+                                            {{item}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="example-title-2">鼠标悬停</h4>
+                            <p>在添加 <code class="html">&lttbody&gt</code> 内的任一行添加 <code>.table-hover</code> 启用鼠标悬停状态</p>
+                            <div class="example">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th v-for="item in table1.thead">{{item}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in table1.tbody">
+                                        <td v-for="item in item">
+                                            {{item}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="example-title-2">带边框的表格</h4>
+                            <p>添加 <code>.table-bordered</code> 可为所有单元格添加边框</p>
+                            <div class="example">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th v-for="item in table.thead">{{item}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in table.tbody">
+                                        <td v-for="item in item">
+                                            {{item}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="example-title-2">条纹表格</h4>
+                            <p>通过添加 <code>.table-striped</code> 在 <code class="html">&lttbody&gt</code>内显示斑马线形式的条纹效果</p>
+                            <div class="example">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th v-for="item in table1.thead">{{item}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in table1.tbody">
+                                        <td v-for="item in item">
+                                            {{item}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="example-title-2">响应式</h4>
+                            <p>创建响应式表格需要在  <code>.table</code> 外面加一层包含 <code>.table-responsive</code> 的元素，在小屏幕设备(屏幕宽度小于768px)上会显示横向的滚动条</p>
+                            <div class="example">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th v-for="item in table.thead">{{item}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in table.tbody">
+                                            <td v-for="item in item">
+                                                {{item}}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'表格',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+    var table = new Vue({
+        el:'.page',
+        data:{
+            table:{
+                thead:['ID','用户名','登陆时间','登陆IP','角色'],
+                tbody:[
+                    {id:'1',name:'teagan',time:'2016/12/12 01:56',ip:'23.125.112.0',duty:'管理员1'},
+                    {id:'2',name:'andy',time:'2016/12/13 02:12',ip:'204.145.9.109',duty:'会员'},
+                    {id:'3',name:'veronica',time:'2016/09/02 13:09',ip:'231.1.8.187',duty:'开发者'},
+                    {id:'4',name:'bruce',time:'2016/11/15 11:56',ip:'120.121.0.1',duty:'技术支持'},
+                    {id:'5',name:'carolina',time:'2016/10/11 09:54',ip:'90.80.132.1',duty:'会员'},
+                    {id:'6',name:'madaline',time:'2016/09/10 12:34',ip:'108.119.90.121',duty:'技术支持'}
+                ]
+            },
+            table1:{
+                thead:['编号','产品','价格走势','销量'],
+                tbody:[
+                    {id:'1',name:'手机',price:'5,3,2,-1,-3,-2,2,3,4,1',num:'28.76%'},
+                    {id:'2',name:'平板电脑',price:'1,-1,-2,1,2,1,0,1,3,2',num:'8.55%'},
+                    {id:'3',name:'台式机',price:'3,2,3,-1,-3,-1,0,2,4,5',num:'58.51%'},
+                    {id:'4',name:'内存',price:'1,-2,0,2,4,5,3,2,3,5',num:'28.35%'},
+                    {id:'5',name:'充电宝',price:'1,-1,0,2,3,1,-1,1,4,2',num:'33.26%'},
+                    {id:'6',name:'U盘',price:'4,2,-1,-3,-2,1,3,5,2,4',num:'72.22%'}
+                ]
+            }
+        },
+        methods:{
+            up:function(){
+                let aaa = this.table.tbody[0];
+                let bbb = this.table.tbody[1];
+                this.$set(this.table.tbody,1,aaa);
+                this.$set(this.table.tbody,0,bbb)
+            }
+        }
+    })
+</script>
+</body>
+</html>

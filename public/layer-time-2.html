@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>功能演示</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/layui-v2.3.0-rc1/layui/css/layui.css"/>
+    <link rel="stylesheet" href="stylesheet/layui-custom.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h4 class="example-title-3">公历节日和自定义重要日子</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid130>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">开启公历节日</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test17" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">自定义重要日</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test18" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">控制可选的日期与时间</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid130>
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">限定可选日期</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="test-limit1" placeholder="yyyy-MM-dd">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">前后若干天可选</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="test-limit2" placeholder="yyyy-MM-dd">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">限定可选时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="test-limit3" placeholder="HH:mm:ss">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">
+                                    这里以控制在9:30-17:30为例
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">其它功能示例</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid130>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">初始赋值</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test19" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">选中后的回调</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test20" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期切换的回调</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test21" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">不出现底部栏</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test22" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">只出现确定按钮</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test23" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">自定义事件</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test24" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label" id="test25-1">点我触发</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test25" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label" id="test26-1">双击我触发</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test26" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期只读</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test27" readonly="" placeholder="yyyy-MM-dd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">非input元素</label>
+                            <div class="layui-input-inline">
+                                <div id="test28" style="height: 38px; line-height: 38px; cursor: pointer; border-bottom: 1px solid #e2e2e2;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/layui-v2.3.0-rc1/layui/layui.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'日期时间',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+
+    layui.use(['laydate'],function(){
+        var laydate = layui.laydate;
+
+        //开启公历节日
+        laydate.render({
+            elem: '#test17'
+            ,calendar: true
+        });
+
+        //自定义重要日
+        laydate.render({
+            elem: '#test18'
+            ,mark: {
+                '0-10-14': '生日'
+                ,'0-12-31': '跨年' //每年的日期
+                ,'0-0-10': '工资' //每月某天
+                ,'0-0-15': '月中'
+                ,'2017-8-15': '' //如果为空字符，则默认显示数字+徽章
+                ,'2099-10-14': '呵呵'
+            }
+            ,done: function(value, date){
+                if(date.year === 2017 && date.month === 8 && date.date === 15){ //点击2017年8月15日，弹出提示语
+                    layer.msg('这一天是：中国人民抗日战争胜利72周年');
+                }
+            }
+        });
+
+        //限定可选日期
+        var ins22 = laydate.render({
+            elem: '#test-limit1'
+            ,min: '2016-10-14'
+            ,max: '2080-10-14'
+            ,ready: function(){
+                ins22.hint('日期可选值设定在 <br> 2016-10-14 到 2080-10-14');
+            }
+        });
+
+        //前后若干天可选，这里以7天为例
+        laydate.render({
+            elem: '#test-limit2'
+            ,min: -7
+            ,max: 7
+        });
+
+        //限定可选时间
+        laydate.render({
+            elem: '#test-limit3'
+            ,type: 'time'
+            ,min: '09:30:00'
+            ,max: '17:30:00'
+            ,btns: ['clear', 'confirm']
+        });
+
+        //初始赋值
+        laydate.render({
+            elem: '#test19'
+            ,value: '1989-10-14'
+            ,isInitValue: true
+        });
+
+        //选中后的回调
+        laydate.render({
+            elem: '#test20'
+            ,done: function(value, date){
+                layer.alert('你选择的日期是：' + value + '<br>获得的对象是' + JSON.stringify(date));
+            }
+        });
+
+        //日期切换的回调
+        laydate.render({
+            elem: '#test21'
+            ,change: function(value, date){
+                layer.msg('你选择的日期是：' + value + '<br><br>获得的对象是' + JSON.stringify(date));
+            }
+        });
+        //不出现底部栏
+        laydate.render({
+            elem: '#test22'
+            ,showBottom: false
+        });
+
+        //只出现确定按钮
+        laydate.render({
+            elem: '#test23'
+            ,btns: ['confirm']
+        });
+
+        //自定义事件
+        laydate.render({
+            elem: '#test24'
+            ,trigger: 'mousedown'
+        });
+
+        //点我触发
+        laydate.render({
+            elem: '#test25'
+            ,eventElem: '#test25-1'
+            ,trigger: 'click'
+        });
+
+        //双击我触发
+        lay('#test26-1').on('dblclick', function(){
+            laydate.render({
+                elem: '#test26'
+                ,show: true
+                ,closeStop: '#test26-1'
+            });
+        });
+
+        //日期只读
+        laydate.render({
+            elem: '#test27'
+            ,trigger: 'click'
+        });
+
+        //非input元素
+        laydate.render({
+            elem: '#test28'
+        });
+
+    })
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}<span id="status"></span></h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'表格',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+    var a= 2;
+    var obj = {b:2};
+    var fn = function(){};
+    fn.c = 3;
+    function test(x,y,z){
+        x=4;
+        y.b=5;
+        z.c=6;
+        return z
+    }
+    test(a,obj,fn);
+    console.log(a + "---" + obj.b + "----" +fn.c)
+    var reslut = a + obj.b +fn.c;
+    console.log(reslut)
+</script>
+</body>
+</html>

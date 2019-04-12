@@ -1,0 +1,25 @@
+.fy-icon{
+    background-image: url("../img/sprites.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    zoom: 0.2;
+}
+.fy-icon-home{
+    background-position: -187px -223px;
+}
+.fy-icon-add{
+    background-position: -334px -223px;
+}
+.fy-icon-search{
+    background-position: -481px -223px;
+}
+.fy-icon-address{
+    background-position: -628px -223px;
+}
+.fy-icon-chat{
+    background-position: -775px -223px;
+}
+.fy-icon-chats{
+    background-position: -922px -223px;
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>时间选择器</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/my97/My97DatePicker/skin/WdatePicker.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h1 class="page-title">my97</h1>
+            <div class="box-model">
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <div class="row mb20">
+                            <h4 class="example-title mb20">常规功能</h4>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">最简功能</h4>
+                                <input id="d11" type="text" onClick="WdatePicker()"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">支持周显示</h4>
+                                <input id="d121" type="text" onClick="WdatePicker({isShowWeek:true})"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">禁用清空功能</h4>
+                                <input id="d15" type="text" onClick="WdatePicker({isShowClear:false,readOnly:true})"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">自定义弹出位置</h4>
+                                <input id="d16" type="text" onClick="WdatePicker({position:{left:100,top:50}})"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">自定义星期的第一天</h4>
+                                <input id="d17" type="text" onClick="WdatePicker({firstDayOfWeek:1})"/>
+                            </div>
+                        </div>
+                        <div class="row mb20">
+                            <h4 class="example-title mb20">特色功能</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="example-title pl0">平面显示</h4>
+                                    <div id="div1"></div>
+                                </div>
+                                <div class="col-md-6 mb20">
+                                    <h4 class="example-title pl0">支持多种容器</h4>
+                                    <span id="demospan">2008-01-01</span>
+                                    <img onClick="WdatePicker({el:'demospan'})"
+                                         src="plugins/my97/My97DatePicker/skin/datePicker.gif" width="16" height="22"
+                                         align="absmiddle" style="cursor:pointer"/>
+                                </div>
+                                <div class="col-md-6 mb20">
+                                    <h4 class="example-title pl0">起始日期功能</h4>
+                                    <input type="text" id="d221" onclick="WdatePicker({startDate:'1980-05-01'})"/>
+                                </div>
+                                <div class="col-md-6 mb20">
+                                    <h4 class="example-title pl0">年月日时分秒</h4>
+                                    <input type="text" id="d241" onclick="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">取得系统可识别的日期值</h4>
+                                <input id="d244" type="text" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy年M月d日',vel:'d244_2'})"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">系统取值</h4>
+                                <input id="d244_2" type="text" />
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">星期, 月 日, 年</h4>
+                                <input type="text" id="d245" onclick="WdatePicker({dateFmt:'DD, MMMM d, yyyy'})"/>
+                            </div>
+                            <div class="col-md-6 mb20">
+                                <h4 class="example-title pl0">双月日历功能</h4>
+                                <input type="text" onclick="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 para-table">
+                        <h4 class="example-title mb20 pl0">参数</h4>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4 class="example-title mb20 pl0">内置函数和属性</h4>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table1.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table1.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4 class="example-title pl0 mb20">自定义格式</h4>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table2.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table2.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/my97/My97DatePicker/WdatePicker.js"></script>
+<script>
+    WdatePicker({eCont:'div1',skin:'whyGreen',onpicked:function(dp){alert('你选择的日期是:'+dp.cal.getDateStr())}})
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'时间选择器',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+
+    var table = new Vue({
+        el:'.para-table',
+        data:{
+            table:{
+                thead:['参数','值','说明'],
+                tbody:[
+                    {name:'isShowWeek',value:'true',time:'支持周显示'},
+                    {name:'readOnly',value:'true',time:'可指定日期框是否只读 '},
+                    {name:'highLineWeekDay',value:'true',time:'可指定是否高亮周末'},
+                    {name:'isShowClear',value:'true',time:'禁用清空'},
+                    {name:'isShowToday',value:'true',time:'默认今天'},
+                    {name:'positon',value:'left:100,top:50',time:'自定义弹出位置'}
+                ]
+            },
+            table1:{
+                thead:['函数名','返回值类型','作用域','参数','描述'],
+                tbody:[
+                    {name:"$dp.show",value:'void',area:'全局',data:'无',des:'显示日期选择框'},
+                    {name:"$dp.hide",value:'void',area:'全局',data:'无',des:'隐藏日期选择框'},
+                    {name:"$dp.unbind",value:'void',area:'全局',data:'el [string/object]:取消绑定的对象,可传入dom对象或者是对象的ID',des:'让传入的对象取消日期控件绑定'},
+                    {name:"$dp.$D",value:'String',area:'全局',data:'id [string]: 对象的ID;arg [object]: 日期差量,可以设置成;{y:[值],M:[值],d:[值],H:[值],m:[值],s:[值]};属性 y,M,d,H,m,s 分别代表 年月日时分秒;{M:3,d:7} 表示 3个月零7天;{d:1,H:1} 表示1天多1小时',des:'将id对应的日期框中的日期字符串,加上定义的日期差量,返回使用real格式化后的日期串'},
+                    {name:"$dp.$DV",value:'String',area:'全局',data:'v [string]: 日期字符串;arg [object]: 同上例的arg',des:'将传入的日期字符串,加上定义的日期差量,返回使用real格式化后的日期串'},
+                    {name:"$dp.cal.getP",value:'String',area:'事件function',data:'p [string]: 属性名称 yMdHmswWD分别代表年,月,日,时,分,秒,星期(0-6),周(1-52),星期(一-六);f [string]: format 格式字符串',des:'返回所指定属性被格式字符串格式化后的值[单属性],在changing,picking,clearing事件中返回选择前的值'},
+                    {name:"$dp.cal.getDateStr",value:'String',area:'事件function',data:'f [string]: 格式字符串,为空时使用dateFmt',des:'返回所指定属性被格式字符串格式化后的值[整个值],在changing,picking,clearing事件中返回选择前的值'},
+                    {name:"$dp.cal.getNewP",value:'String',area:'事件function',data:'用法同$dp.cal.getP',des:'返回所指定属性被格式字符串格式化后的值[单属性],在changing,picking,clearing事件中返回选择前的值'},
+                    {name:"$dp.cal.getNewDateStr",value:'String',area:'事件function',data:'用法同$dp.cal.getDateStr',des:'返回所指定属性被格式字符串格式化后的值[单属性],在changing,picking,clearing事件中返回选择前的值'},
+                    {name:"$dp.cal.date",value:'object',area:'事件function',data:'$dp.cal.date.y:返回 年;$dp.cal.date.M:返回 月;$dp.cal.date.d:返回 日;$dp.cal.date.H:返回 时;$dp.cal.date.m:返回 分;$dp.cal.date.s:返回 秒 ',des:'在changing,picking,clearing事件中返回选择前的日期对象'},
+                    {name:"$dp.cal.newdate",value:'object',area:'事件function',data:'用法同$dp.cal.date',des:'在changing,picking,clearing事件中返回选择前的日期对象'}
+                ]
+            },
+            table2:{
+                thead:['格式','说明'],
+                tbody:[
+                    {name:'y',time:'将年份表示为最多两位数字。如果年份多于两位数，则结果中仅显示两位低位数。'},
+                    {name:'yy',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'yyy',time:'将年份表示为三位数字。如果少于三位数，前面补零。'},
+                    {name:'yyyy',time:'将年份表示为四位数字。如果少于四位数，前面补零。'},
+                    {name:'M',time:'将月份表示为从 1 至 12 的数字'},
+                    {name:'MM',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'MMM',time:'返回月份的缩写 一月 至 十二月 (英文状态下 Jan to Dec) 。'},
+                    {name:'MMMM',time:'	返回月份的全称 一月 至 十二月 (英文状态下 January to December) 。'},
+                    {name:'d',time:'将月中日期表示为从 1 至 31 的数字。'},
+                    {name:'dd',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'H',time:'将小时表示为从 0 至 23 的数字。'},
+                    {name:'HH',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'m',time:'将分钟表示为从 0 至 59 的数字。'},
+                    {name:'mm',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'s',time:'将秒表示为从 0 至 59 的数字。'},
+                    {name:'ss',time:'同上，如果小于两位数，前面补零。'},
+                    {name:'w',time:'返回星期对应的数字 0 (星期天) - 6 (星期六) 。'},
+                    {name:'D',time:'返回星期的缩写 一 至 六 (英文状态下 Sun to Sat) 。'},
+                    {name:'DD',time:'返回星期的全称 星期一 至 星期六 (英文状态下 Sunday to Saturday) 。'},
+                    {name:'W',time:'返回周对应的数字 (1 - 53) 。'},
+                    {name:'WW',time:'同上，如果小于两位数，前面补零 (01 - 53) 。'}
+                ]
+            }
+        }
+    })
+
+</script>
+</html>

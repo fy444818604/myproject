@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/slick-master/slick/slick.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .slider {
+            margin: 25px 30px;
+            text-align: center;
+        }
+        .slick-slide{
+            height: 120px;
+            line-height: 120px;
+        }
+        .slick-slide>h3{
+            background: #f1f4f5;
+            margin: 0 10px;
+        }
+        .slick-prev:before,.slick-next:before  {
+            color: #4e97d9;
+        }
+        .responsive,.one-time,.fade{
+            margin-bottom: 60px;
+        }
+        .center h3 {
+            opacity: 0.8;
+            transition: all 300ms ease;
+        }
+        .center .slick-center h3 {
+            -moz-transform: scale(1.08);
+            -ms-transform: scale(1.08);
+            -o-transform: scale(1.08);
+            -webkit-transform: scale(1.08);
+            color: #e67e22;
+            opacity: 1;
+            transform: scale(1.08);
+            font-size: 28px;
+            background-color:  #F3F7F9;
+        }
+        .slick-slide .image {
+            padding: 10px;
+        }
+        .fade .slick-slide{
+            height: auto;
+        }
+        .slick-para{
+            margin: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h1 class="page-title">Slick</h1>
+            <div class="box-model">
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">显示单个</h4>
+                        <div class="slider single-item">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">显示多个</h4>
+                        <div class="slider multiple-items">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                            <div><h3>7</h3></div>
+                            <div><h3>8</h3></div>
+                            <div><h3>9</h3></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">响应式</h4>
+                        <div class="slider responsive">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                            <div><h3>7</h3></div>
+                            <div><h3>8</h3></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">一次移动一个</h4>
+                        <div class="slider one-time">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                            <div><h3>7</h3></div>
+                            <div><h3>8</h3></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">个数不均匀的</h4>
+                        <div class="slider uneven">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                            <div><h3>7</h3></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">居中模式</h4>
+                        <div class="slider center">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">懒加载</h4>
+                        <div class="slider lazy">
+                            <div><div class="image"><img data-lazy="img/city-1.jpg"/></div></div>
+                            <div><div class="image"><img data-lazy="img/city-2.jpg"/></div></div>
+                            <div><div class="image"><img data-lazy="img/city-3.jpg"/></div></div>
+                            <div><div class="image"><img data-lazy="img/city-4.jpg"/></div></div>
+                            <div><div class="image"><img data-lazy="img/city-5.jpg"/></div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">自动播放</h4>
+                        <div class="slider autoplay">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">过滤</h4>
+                        <div class="slider filtering">
+                            <div><h3>1</h3></div>
+                            <div><h3>2</h3></div>
+                            <div><h3>3</h3></div>
+                            <div><h3>4</h3></div>
+                            <div><h3>5</h3></div>
+                            <div><h3>6</h3></div>
+                            <div><h3>7</h3></div>
+                            <div><h3>8</h3></div>
+                            <div><h3>9</h3></div>
+                            <div><h3>10</h3></div>
+                            <div><h3>11</h3></div>
+                            <div><h3>12</h3></div>
+                        </div>
+                        <div class="filter" style="text-align: center">
+                            <button class="btn btn-primary js-filter">过滤</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">增加&删除</h4>
+                        <div class="slider add-remove">
+                            <div><h3>1</h3></div>
+                        </div>
+                        <div class="buttons" style="text-align: center">
+                            <button class="btn btn-primary js-add-slide">增加</button>
+                            <button class="btn btn-primary js-remove-slide">删除</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">渐变</h4>
+                        <div class="slider fade">
+                            <div><div class="image"><img src="img/city-1.jpg"/></div></div>
+                            <div><div class="image"><img src="img/city-2.jpg"/></div></div>
+                            <div><div class="image"><img src="img/city-3.jpg"/></div></div>
+                            <div><div class="image"><img src="img/city-4.jpg"/></div></div>
+                            <div><div class="image"><img src="img/city-5.jpg"/></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">参数</h4>
+                        <table class="table table-bordered slick-para table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 pl0">
+                        <h4 class="example-title">方法</h4>
+                        <table class="table table-bordered slick-para table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table1.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table1.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/slick-master/slick/slick.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'轮播',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    })
+    var table = new Vue({
+        el:'.page',
+        data:{
+            table:{
+                thead:['参数','类型','默认值','说明'],
+                tbody:[
+                    {para:'accessibility',type:'布尔值',value:'true',remark:'启用Tab键和箭头键导航'},
+                    {para:'autoplay',type:'布尔值',value:'false',remark:'自动播放'},
+                    {para:'autoplaySpeed',type:'整数',value:'3000',remark:'自动播放间隔'},
+                    {para:'centerMode',type:'布尔值',value:'false',remark:'中心模式'},
+                    {para:'centerPadding',type:'字符串',value:'50px',remark:'中心模式左右内边距'},
+                    {para:'cssEase',type:'字符串',value:'ease',remark:'CSS3 动画'},
+                    {para:'customPaging',type:'function',value:'n/a',remark:'自定义分页'},
+                    {para:'dots',type:'布尔值',value:'false',remark:'指示点'},
+                    {para:'draggable',type:'布尔值',value:'true',remark:'启用桌面拖动'},
+                    {para:'easing',type:'字符串',value:'linear',remark:'animate() fallback easing'},
+                    {para:'fade',type:'布尔值',value:'false',remark:'淡入淡出'},
+                    {para:'arrows',type:'布尔值',value:'true',remark:'左右箭头'},
+                    {para:'infinite',type:'布尔值',value:'true',remark:'循环播放'},
+                    {para:'lazyLoad',type:'字符串',value:'ondemand',remark:'延迟加载，可选 ondemand 和 progressive'},
+                    {para:'onBeforeChange(this, index)',type:'method',value:'null',remark:'开始切换前的回调函数'},
+                    {para:'onAfterChange(this, index)',type:'method',value:'null',remark:'切换后的回调函数'},
+                    {para:'onInit(this)',type:'method',value:'null',remark:'第一次初始化后的回调函数'},
+                    {para:'onReInit(this)',type:'method',value:'null',remark:'再次初始化后的回调函数'},
+                    {para:'pauseOnHover',type:'布尔值',value:'true',remark:'鼠标悬停暂停自动播放'},
+                    {para:'responsive',type:'object',value:'null',remark:'断点触发设置'},
+                    {para:'slide',type:'字符串',value:'div',remark:'滑动元素查询'},
+                    {para:'slidesToShow',type:'整数',value:'1',remark:'幻灯片每屏显示个数'},
+                    {para:'slidesToScroll',type:'整数',value:'1',remark:'幻灯片每次滑动个数'},
+                    {para:'speed',type:'整数',value:'300',remark:'	滑动时间'},
+                    {para:'swipe',type:'布尔值',value:'true',remark:'移动设备滑动事件'},
+                    {para:'touchMove',type:'布尔值',value:'true',remark:'触摸滑动'},
+                    {para:'touchThreshold',type:'整数',value:'5',remark:'滑动切换阈值，即滑动多少像素后切换'},
+                    {para:'useCSS',type:'布尔值',value:'true',remark:'使用 CSS3 过度'},
+                    {para:'vertical',type:'布尔值',value:'false',remark:'垂直方向'}
+                ]
+            },
+            table1:{
+                thead:['方法','Argument','说明'],
+                tbody:[
+                    {fun:'slick()',Argument:'options : object',remark:'初始化 slick'},
+                    {fun:'unslick()',Argument:'',remark:'销毁 slick'},
+                    {fun:'slickNext()',Argument:'',remark:'切换下一张'},
+                    {fun:'slickPrev()',Argument:'',remark:'切换上一张'},
+                    {fun:'slickPause()',Argument:'',remark:'暂停自动播放'},
+                    {fun:'slickPlay()',Argument:'',remark:'开始自动播放'},
+                    {fun:'slickGoTo()',Argument:'index : int',remark:'切换到第 x 张'},
+                    {fun:'slickCurrentSlide()',Argument:'',remark:'返回当前幻灯片索引'},
+                    {fun:'slickAdd()',Argument:'element : html or DOM object, index: int, addBefore: bool',remark:'Add a slide. If an index is provided, will add at that index, or before if addBefore is set. If no index is provided, add to the end or to the beginning if addBefore is set. Accepts HTML String'},
+                    {fun:'slideRemove()',Argument:'index: int, removeBefore: bool',remark:'Remove slide by index. If removeBefore is set true, remove slide preceding index, or the first slide if no index is specified. If removeBefore is set to false, remove the slide following index, or the last slide if no index is set.'},
+                    {fun:'slickFilter()',Argument:'filter : selector or function',remark:'Filters slides using jQuery .filter syntax'},
+                    {fun:'slickUnfilter()',Argument:'',remark:'Removes applied filter'},
+                    {fun:'slickSetOption(option,value,refresh)',Argument:'option : string(option name), value : depends on option, refresh : 布尔值',remark:'Sets an option live. Set refresh to true if it is an option that changes the display'}
+                ]
+            }
+        }
+    })
+
+    $(function(){
+        $('.single-item').slick();
+        $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+        $('.responsive').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+        $('.one-time').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 5,
+            touchMove: false,
+            slidesToScroll: 1
+        });
+        $('.uneven').slick({
+            slidesToShow: 4,
+            slidesToScroll: 4
+        });
+        $('.center').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+        $('.lazy').slick({
+            lazyLoad: 'ondemand',
+            slidesToShow: 3,
+            slidesToScroll: 1
+        });
+        $('.autoplay').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
+        $('.fade').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            slide: 'div',
+            cssEase: 'linear'
+        });
+        $('.add-remove').slick({
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+        var slideIndex = 1;
+        $('.js-add-slide').on('click', function(){
+            slideIndex++;
+            $('.add-remove').slickAdd('<div><h3>'+slideIndex+'</h3></div>');
+        });
+        $('.js-remove-slide').on('click', function(){
+            $('.add-remove').slickRemove(slideIndex - 1);
+            if (slideIndex !== 0) {
+                slideIndex--;
+            }
+        });
+        $('.filtering').slick({
+            slidesToShow: 4,
+            slidesToScroll: 4
+        });
+        var filtered = false;
+        $('.js-filter').on('click', function(){
+            if(filtered === false) {
+                $('.filtering').slickFilter(':even');
+                $(this).text('不过滤');
+                filtered = true;
+            } else {
+                $('.filtering').slickUnfilter();
+                $(this).text('过滤');
+                filtered = false;
+            }
+        });
+    })
+</script>
+</html>

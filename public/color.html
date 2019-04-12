@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>配色方案</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/color.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .match-color>li{
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            margin-right: 40px;
+            margin-bottom: 20px;
+            line-height: 120px;
+            color: #fff;
+            text-align: center;
+            border-radius: 100%;
+        }
+        .color-palette h5{
+            margin-bottom: 27px;
+        }
+        .color-palette .list-group-item {
+            padding: 15px 20px;
+            border: none;
+            color: #ffffff;
+        }
+        .list-group-item:first-child {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+        .list-group-item:last-child {
+            margin-bottom: 0;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+        .list-group{
+            margin-bottom: 27px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h1 class="page-title">样式</h1>
+            <div class="box-model">
+                <div class="row">
+                    <h4 class="example-title">基础配色方案</h4>
+                    <div class="example pda12">
+                        <ul class="match-color">
+                            <li class="c-e4eaec blue-grey-700">#e4eaec</li>
+                            <li class="c-526069">#526069</li>
+                            <li class="c-62a8ea">#62a8ea</li>
+                            <li class="c-57c7d4">#57c7d4</li>
+                            <li class="c-3aa99e">#3aa99e</li>
+                            <li class="c-f2a654">#f2a654</li>
+                            <li class="c-f96868">#f96868</li>
+                            <li class="c-926dde">#926dde</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row color-palette">
+                    <div class="col-sm-4 col-md-3" v-for="item in colorCard">
+                        <h5 class="text-uppercase">{{item.title}}</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item" v-for="(item,index) in item.list" :class="item.colorClass">
+                                <span>{{800 - 100*index}}</span> / <span class="text-uppercase">{{item.colorName}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h1 class="page-title">配色应用</h1>
+            <div class="box-model">
+                <div class="row">
+                    <div class="col-lg-6 pl0">
+                        <h4 class="example-title">文本配色</h4>
+                        <div class="col-sm-3">
+                            <div class="example">
+                                <div class="bg-blue-grey-700 text-color-box"></div>
+                                <p style="margin: 0 0 11px;">标题</p>
+                                <span>#37474f</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="example">
+                                <div class="bg-blue-grey-600 text-color-box"></div>
+                                <p>副标题</p>
+                                <span>#526069</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="example">
+                                <div class="bg-blue-grey-500 text-color-box"></div>
+                                <p>文本</p>
+                                <span>#76838f</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="example">
+                                <div class="bg-blue-grey-400 text-color-box"></div>
+                                <p>提示</p>
+                                <span>#a3afb7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pl0">
+                        <h4 class="example-title mb20 pl0">边框颜色</h4>
+                        <div class="example-wrap">
+                            <div class="example-border">
+                                <div class="bg-blue-grey-200"></div>
+                                <div>
+                                    <p style="margin: 0 0 11px;">边框颜色</p>
+                                    <span>#e4eaec</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/slick-master/slick/slick.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'配色方案',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    })
+
+    var color = new Vue({
+        el:'.color-palette',
+        data:{
+            colorCard:[
+                {
+                    title:'红 red',
+                    list:[
+                        {colorClass:'bg-red-800',colorName:'#D6494B'},
+                        {colorClass:'bg-red-700',colorName:'#E9595B'},
+                        {colorClass:'bg-red-600',colorName:'#F96868'},
+                        {colorClass:'bg-red-500',colorName:'#FA7A7A'},
+                        {colorClass:'bg-red-400 blue-grey-700',colorName:'#FA9898'},
+                        {colorClass:'bg-red-300 blue-grey-700',colorName:'#FAB4B4'},
+                        {colorClass:'bg-red-200 blue-grey-700',colorName:'#FAD3D3'},
+                        {colorClass:'bg-red-100 blue-grey-700',colorName:'#FFEAEA'}
+                    ]
+                },
+                {
+                    title:'粉 PINK',
+                    list:[
+                        {colorClass:'bg-pink-800',colorName:'#E53B75'},
+                        {colorClass:'bg-pink-700',colorName:'#F44C87'},
+                        {colorClass:'bg-pink-600',colorName:'#F96197'},
+                        {colorClass:'bg-pink-500',colorName:'#F978A6'},
+                        {colorClass:'bg-pink-400 blue-grey-700',colorName:'#FB8DB4'},
+                        {colorClass:'bg-pink-300 blue-grey-700',colorName:'#FBA9C6'},
+                        {colorClass:'bg-pink-200 blue-grey-700',colorName:'#FFCCDE'},
+                        {colorClass:'bg-pink-100 blue-grey-700',colorName:'#FCE4EC'}
+                    ]
+                },
+                {
+                    title:'紫 purple',
+                    list:[
+                        {colorClass:'bg-purple-800',colorName:'#6D45BC'},
+                        {colorClass:'bg-purple-700',colorName:'#7C51D1'},
+                        {colorClass:'bg-purple-600',colorName:'#926DDE'},
+                        {colorClass:'bg-purple-500',colorName:'#A58ADD'},
+                        {colorClass:'bg-purple-400 blue-grey-700',colorName:'#BBA7E4'},
+                        {colorClass:'bg-purple-300 blue-grey-700',colorName:'#D2C5EC'},
+                        {colorClass:'bg-purple-200 blue-grey-700',colorName:'#E3DBF4'},
+                        {colorClass:'bg-purple-100 blue-grey-700',colorName:'#F6F2FF'}
+                    ]
+                },
+                {
+                    title:'靛青 indigo',
+                    list:[
+                        {colorClass:'bg-indigo-800',colorName:'#465BD4'},
+                        {colorClass:'bg-indigo-700',colorName:'#5166D6'},
+                        {colorClass:'bg-indigo-600',colorName:'#677AE4'},
+                        {colorClass:'bg-indigo-500',colorName:'#8897EC'},
+                        {colorClass:'bg-indigo-400 blue-grey-700',colorName:'#9DAAF3'},
+                        {colorClass:'bg-indigo-300 blue-grey-700',colorName:'#BCC5F4'},
+                        {colorClass:'bg-indigo-200 blue-grey-700',colorName:'#DADEF5'},
+                        {colorClass:'bg-indigo-100 blue-grey-700',colorName:'#EDEFF9'}
+                    ]
+                },
+                {
+                    title:'蓝 blue',
+                    list:[
+                        {colorClass:'bg-blue-800',colorName:'#3583CA'},
+                        {colorClass:'bg-blue-700',colorName:'#4E97D9'},
+                        {colorClass:'bg-blue-600',colorName:'#62A8EA'},
+                        {colorClass:'bg-blue-500',colorName:'#89BCEB'},
+                        {colorClass:'bg-blue-400 blue-grey-700',colorName:'#A2CAEE'},
+                        {colorClass:'bg-blue-300 blue-grey-700',colorName:'#BCD8F1'},
+                        {colorClass:'bg-blue-200 blue-grey-700',colorName:'#D5E4F1'},
+                        {colorClass:'bg-blue-100 blue-grey-700',colorName:'#E8F1F8'}
+                    ]
+                },
+                {
+                    title:'青 cyan',
+                    list:[
+                        {colorClass:'bg-cyan-800',colorName:'#37A9B7'},
+                        {colorClass:'bg-cyan-700',colorName:'#47B8C6'},
+                        {colorClass:'bg-cyan-600',colorName:'#57C7D4'},
+                        {colorClass:'bg-cyan-500',colorName:'#77D6E1'},
+                        {colorClass:'bg-cyan-400 blue-grey-700',colorName:'#9AE1E9'},
+                        {colorClass:'bg-cyan-300 blue-grey-700',colorName:'#BAEAEF'},
+                        {colorClass:'bg-cyan-200 blue-grey-700',colorName:'#D3EFF2'},
+                        {colorClass:'bg-cyan-100 blue-grey-700',colorName:'#ECF9FA'}
+                    ]
+                },
+                {
+                    title:'深青 teal',
+                    list:[
+                        {colorClass:'bg-teal-800',colorName:'#178D81'},
+                        {colorClass:'bg-teal-700',colorName:'#269B8F'},
+                        {colorClass:'bg-teal-600',colorName:'#3AA99E'},
+                        {colorClass:'bg-teal-500',colorName:'#56BFB5'},
+                        {colorClass:'bg-teal-400 blue-grey-700',colorName:'#79D1C9'},
+                        {colorClass:'bg-teal-300 blue-grey-700',colorName:'#99E1DA'},
+                        {colorClass:'bg-teal-200 blue-grey-700',colorName:'#CDF4F1'},
+                        {colorClass:'bg-teal-100 blue-grey-700',colorName:'#ECFDFC'}
+                    ]
+                },
+                {
+                    title:'绿 green',
+                    list:[
+                        {colorClass:'bg-green-800',colorName:'#279566'},
+                        {colorClass:'bg-green-700',colorName:'#36AB7A'},
+                        {colorClass:'bg-green-600',colorName:'#46BE8A'},
+                        {colorClass:'bg-green-500',colorName:'#5CD29D'},
+                        {colorClass:'bg-green-400 blue-grey-700',colorName:'#7DD3AE'},
+                        {colorClass:'bg-green-300 blue-grey-700',colorName:'#9FE5C5'},
+                        {colorClass:'bg-green-200 blue-grey-700',colorName:'#BFEDD8'},
+                        {colorClass:'bg-green-100 blue-grey-700',colorName:'#E7FAF2'}
+                    ]
+                },
+                {
+                    title:'浅绿 light-green',
+                    list:[
+                        {colorClass:'bg-light-green-800',colorName:'#70A532'},
+                        {colorClass:'bg-light-green-700',colorName:'#83B944'},
+                        {colorClass:'bg-light-green-600',colorName:'#9ECE67'},
+                        {colorClass:'bg-light-green-500',colorName:'#ACD57C'},
+                        {colorClass:'bg-light-green-400 blue-grey-700',colorName:'#BAD896'},
+                        {colorClass:'bg-light-green-300 blue-grey-700',colorName:'#CADFB1'},
+                        {colorClass:'bg-light-green-200 blue-grey-700',colorName:'#E0ECD1'},
+                        {colorClass:'bg-light-green-100 blue-grey-700',colorName:'#F1F7EA'}
+                    ]
+                },
+                {
+                    title:'黄 yellow',
+                    list:[
+                        {colorClass:'bg-yellow-800',colorName:'#FBC02D'},
+                        {colorClass:'bg-yellow-700',colorName:'#F9CD48'},
+                        {colorClass:'bg-yellow-600',colorName:'#F7DA64'},
+                        {colorClass:'bg-yellow-500',colorName:'#F7E083'},
+                        {colorClass:'bg-yellow-400 blue-grey-700',colorName:'#F8E59B'},
+                        {colorClass:'bg-yellow-300 blue-grey-700',colorName:'#F6E7A9'},
+                        {colorClass:'bg-yellow-200 blue-grey-700',colorName:'#F9EEC1'},
+                        {colorClass:'bg-yellow-100 blue-grey-700',colorName:'#FFFAE7'}
+                    ]
+                },
+                {
+                    title:'橙 orange',
+                    list:[
+                        {colorClass:'bg-orange-800',colorName:'#E98F2E'},
+                        {colorClass:'bg-orange-700',colorName:'#EC9940'},
+                        {colorClass:'bg-orange-600',colorName:'#F2A654'},
+                        {colorClass:'bg-orange-500',colorName:'#F4B066'},
+                        {colorClass:'bg-orange-400 blue-grey-700',colorName:'#F6BE80'},
+                        {colorClass:'bg-orange-300 blue-grey-700',colorName:'#FBCE9D'},
+                        {colorClass:'bg-orange-200 blue-grey-700',colorName:'#FFDDB9'},
+                        {colorClass:'bg-orange-100 blue-grey-700',colorName:'#FFF3E6'}
+                    ]
+                },
+                {
+                    title:'棕 brown',
+                    list:[
+                        {colorClass:'bg-brown-800',colorName:'#715146'},
+                        {colorClass:'bg-brown-700',colorName:'#7D5B4F'},
+                        {colorClass:'bg-brown-600',colorName:'#8D6658'},
+                        {colorClass:'bg-brown-500',colorName:'#A17768'},
+                        {colorClass:'bg-brown-400 blue-grey-700',colorName:'#B98E7E'},
+                        {colorClass:'bg-brown-300 blue-grey-700',colorName:'#D3AA9C'},
+                        {colorClass:'bg-brown-200 blue-grey-700',colorName:'#E2BDAF'},
+                        {colorClass:'bg-brown-100 blue-grey-700',colorName:'#FAE6DF'}
+                    ]
+                },
+                {
+                    title:'灰 grey',
+                    list:[
+                        {colorClass:'bg-grey-800',colorName:'#424242'},
+                        {colorClass:'bg-grey-700',colorName:'#616161'},
+                        {colorClass:'bg-grey-600',colorName:'#757575'},
+                        {colorClass:'bg-grey-500',colorName:'#9E9E9E'},
+                        {colorClass:'bg-grey-400 blue-grey-700',colorName:'#BDBDBD'},
+                        {colorClass:'bg-grey-300 blue-grey-700',colorName:'#E0E0E0'},
+                        {colorClass:'bg-grey-200 blue-grey-700',colorName:'#EEEEEE'},
+                        {colorClass:'bg-grey-100 blue-grey-700',colorName:'#FAFAFA'}
+                    ]
+                },
+                {
+                    title:'蓝灰 blue-grey',
+                    list:[
+                        {colorClass:'bg-blue-grey-800',colorName:'#263238'},
+                        {colorClass:'bg-blue-grey-700',colorName:'#37474F'},
+                        {colorClass:'bg-blue-grey-600',colorName:'#526069'},
+                        {colorClass:'bg-blue-grey-500',colorName:'#76838F'},
+                        {colorClass:'bg-blue-grey-400 blue-grey-700',colorName:'#A3AFB7'},
+                        {colorClass:'bg-blue-grey-300 blue-grey-700',colorName:'#CCD5DB'},
+                        {colorClass:'bg-blue-grey-200 blue-grey-700',colorName:'#E4EAEC'},
+                        {colorClass:'bg-blue-grey-100 blue-grey-700',colorName:'#F3F7F9'}
+                    ]
+                }
+            ]
+        }
+    })
+</script>
+</html>

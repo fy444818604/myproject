@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>面板拖拽</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h1 class="page-title">面板拖拽</h1>
+            <div class="box-model">
+                <div class="grid-stack">
+                    <div class="grid-stack-item"
+                         data-gs-x="0" data-gs-y="0"
+                         data-gs-width="4" data-gs-height="2">
+                        <div class="grid-stack-item-content"></div>
+                    </div>
+                    <div class="grid-stack-item"
+                         data-gs-x="4" data-gs-y="0"
+                         data-gs-width="4" data-gs-height="4">
+                        <div class="grid-stack-item-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/gridstack.js-develop/src/gridstack.jQueryUI.js"></script>
+<script type="text/javascript" src="plugins/gridstack.js-develop/src/gridstack.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'面板操作',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    })
+</script>
+</html>

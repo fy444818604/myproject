@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/toastr-master/toastr.min.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_1065627_w30yzdes91r.css">
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            user-select: none;
+        }
+        table td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+        }
+        .active{
+            background: #000;
+        }
+        .body{
+            height: 100%;
+            width: 100%;
+        }
+        .header{
+            height: 61px;
+            vertical-align: middle;
+            width:100%;
+            background-color: #4e97d9;
+            padding: 0 15px;
+        }
+        .navbar-header{
+            width: 205px;
+        }
+        .navbar-header.collapse{
+            width: 74px;
+            padding-left: 14px;
+        }
+        .navbar-header-left{
+            float: left;
+            height: 61px;
+            display: flex;
+        }
+        .navbar-header-left>ul>li:first-child:hover,.nav-type-list>li:hover{
+            background-color: rgba(0,0,0,.1);
+        }
+        .nav-type-list>li.active{
+            background-color: rgba(0,0,0,.1);
+        }
+        .navbar-header-list>li{
+            line-height: 60px;
+            display: inline-block;
+            height: 100%;
+        }
+        .navbar-header-list>li:first-child{
+            line-height: 56px;
+        }
+        .navbar-header-list>li>ul{
+            height: 100%;
+        }
+        .navbar-header-list>li>ul>li>a,.navbar-header-list>li>a{
+            display: block;
+            padding: 0 10px;
+            height: 100%;
+        }
+        .navbar-header-list>li a i, .navbar-header-list>li a span{
+            color: #ffffff;
+        }
+        .container{
+            height: calc(100% - 61px);
+            overflow: hidden;
+        }
+        .middle{
+            height: calc(100% - 40px);
+            width: 100%;
+            background: #ffffff;
+            float: left;
+            padding-left: 220px;
+        }
+        .middle.collapse{
+            padding-left: 90px!important;
+        }
+        .left{
+            height: 100%;
+            width: 220px;
+            float: left;
+            margin-left: -100%;
+            background: #263238;
+        }
+        .left.collapse{
+            width: 90px!important;
+        }
+        .footer{
+            height: 40px;
+            line-height: 40px;
+            width: calc(100% - 220px);
+            background: rgba(0,0,0,.02);
+            position: absolute;
+            bottom: 1px;
+            right: 0;
+            border-top: 1px solid #e4eaec;
+        }
+        .footer.collapse{
+            width: calc(100% - 90px)!important;
+        }
+        .site-menu-item{
+            position: relative;
+        }
+        .site-menu-item a{
+            display: flex;
+            position: relative;
+            text-decoration: none;
+            color: rgba(163,175,183,.9);
+            padding: 0 20px;
+			align-items: center;
+			height: 100%;
+			width: 100%;
+        }
+        .site-menu-item>a{
+            text-align: center;
+        }
+        .site-menu-title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        .fa-position{
+            height: 100%;
+        }
+        .site-menu-arrow{
+            position: absolute;
+            right: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            font-family: "FontAwesome";
+            font-style: normal;
+            font-weight: 400;
+            -webkit-transition: -webkit-transform .15s;
+            -o-transition: -o-transform .15s;
+            transition: -webkit-transform .15s;
+            transition: transform .15s;
+            transition: transform .15s,-webkit-transform .15s,-o-transform .15s;
+            -webkit-transform: translate(0,0);
+            -ms-transform: translate(0,0);
+            -o-transform: translate(0,0);
+            transform: translate(0,0);
+            text-rendering: auto;
+            speak: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .site-menu-arrow:before {
+            content: "\f104";
+        }
+        .site-menu i{
+            margin-right: 5px;
+        }
+        .fa{
+            vertical-align: middle;
+        }
+        .site-menu-title-2{
+            margin-left: 28px;
+        }
+        .site-menu-title-3{
+            margin-left: 36px!important;
+        }
+        .index-logo{
+            height: 32px;
+            margin-top: 12px;
+        }
+        .main-iframe{
+            width: 100%;
+            background-color: #ffffff;
+            height: 100%;
+        }
+        .owner{
+            padding-left: 15px;
+            color: #76838f;
+        }
+        .versions{
+            padding-right: 15px;
+            color: #76838f;
+        }
+        .fy-nav .site-menu>.site-menu-item.open {
+            background: #242f35;
+        }
+        .fy-nav .site-menu-item.open>a .site-menu-arrow,.fy-nav .site-menu-sub.open>a .site-menu-arrow{
+            transform:rotate(270deg)
+        }
+        .fy-nav .site-menu-item ul{
+            display: none;
+        }
+        .fy-nav.collapse .site-menu-item.open>:nth-child(2),.fy-nav .site-menu-sub.open>:nth-child(2){
+            position: relative;
+            display: block;
+            left: 0;
+            top: 0;
+        }
+        .site-menu>.site-menu-item>a:hover,.site-menu .site-menu-sub>a:hover{
+            background-color: #242f35;
+        }
+        .site-menu>.site-menu-item>a:hover .site-menu-title,.site-menu>.site-menu-item>a:hover i,.site-menu>.site-menu-item>a:hover .site-menu-arrow,.site-menu .site-menu-sub>a:hover .site-menu-title,.site-menu .site-menu-sub>a:hover .site-menu-arrow{
+            color: #fff;
+        }
+        .site-menu>.site-menu-item.open>a{
+            background-color: #242f35;
+        }
+        .site-menu>.site-menu-item.open>a>i,.site-menu>.site-menu-item.open>a>span{
+            color: #fff;
+        }
+        .collapse.fy-nav>.site-menu>.site-menu-item{
+            position: relative;
+        }
+        .collapse.fy-nav>.site-menu>.site-menu-item>a{
+            text-align: left!important;
+        }
+        .fy-nav .site-menu-item.open>:nth-child(2){
+            position: absolute;
+            display: block;
+            background-color: #263238;
+            left: 90px;
+            top: 0px;
+            width: 220px;
+        }
+        .nav-type-list>li{
+            display: inline-block;
+        }
+		.site-menu li{
+			height: 38px;
+		}
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="header">
+        <div class="navbar-header-left">
+            <div class="navbar-header" :class="collapse?'':'collapse'">
+                <img class="index-logo" :src="collapse?logoImg[0]:logoImg[1]" alt=""/>
+            </div>
+            <ul class="navbar-header-list">
+                <li>
+                    <a @click="change">
+                        <i class="fa fa-2x" :class="collapse?lock[0]:lock[1]" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <ul class="nav-type-list">
+                        <li v-for="(value,index) in menuTitle" :class="value.active?'active':''" @click="menuChange(index,value.type,value.active)">
+                            <a>
+                                <i class="fa fa-2x" :class="value.icon"></i>
+                                <span>{{value.text}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="middle" :class="collapse?'':'collapse'">
+            <iframe class="main-iframe" name="main-iframe" src="door-index.html" frameborder="0"></iframe>
+            <div class="footer" :class="collapse?'':'collapse'">
+                <div class="fl owner">
+                    {{owner}}
+                </div>
+                <div class="fr versions">
+                    {{versions}}
+                </div>
+            </div>
+        </div>
+        <div class="left" :class="collapse?'':'collapse'">
+            <div class="fy-nav" :class="collapse?'collapse':''">
+                <ul class="site-menu">
+                    <li class="site-menu-item menu-level-1" v-for="item in menu" :class="item.open == true?'open':''">
+                        <a href="javascript:;" :href="item.href" :target="item.href?'main-iframe':''">
+                            <i class="iconfont" :class="item.icon" v-if="collapse||(!collapse&&!item.open)"></i>
+                            <span class="site-menu-title" v-if="collapse||(!collapse&&item.open)">{{item.text}}</span>
+                            <span class="site-menu-arrow" v-if="collapse"></span>
+                        </a>
+                        <ul v-if="item.children">
+                            <li class="site-menu-sub menu-level-2" v-for="item in item.children" :class="item.open == true?'open':''">
+                                <a href="javascript:;" :href="item.href?item.href:'#'" :target="item.href?'main-iframe':false">
+                                    <span class="site-menu-title-2 site-menu-title">{{item.text}}</span>
+                                    <span class="site-menu-arrow" v-if="item.children"></span>
+                                </a>
+                                <ul v-if="item.children">
+                                    <li class="site-menu-sub menu-level-3" v-for="item in item.children" :class="item.open == true?'open':''">
+                                        <a href="javascript:;" :href="item.href?item.href:'#'"  :target="item.href?'main-iframe':false">
+                                            <span class="site-menu-title site-menu-title-3">{{item.text}}</span>
+                                            <span class="site-menu-arrow" v-if="item.children"></span>
+                                        </a>
+                                        <ul v-if="item.children">
+                                            <li class="site-menu-sub menu-level-4" v-for="item in item.children" :class="item.open == true?'open':''">
+                                                <a href="javascript:;" :href="item.href?item.href:'#'" :target="item.href?'main-iframe':false">
+                                                    <span class="site-menu-title site-menu-title-3">{{item.text}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/toastr-master/toastr.min.js"></script>
+<script type="text/javascript" src="plugins/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    var nav = new Vue({
+        el:".body",
+        data:{
+            logoImg:['http://cdn.admui.com/demo/iframe/1.1.0/images/logo-white.svg','http://cdn.admui.com/demo/iframe/1.1.0/images/logo-white-min.svg'],
+            lock:['fa-bars','fa-sign-in'],
+            owner:'XXXX@sdfasaf',
+            versions:'V1.1',
+            collapse:true,
+            menuTitle:[
+                {icon:'fa-newspaper-o',text:'UI示例',type:'0',active:true},
+                {icon:'fa-share-alt',text:'layui',type:'1'}
+            ],
+            menu:[]
+        },
+        created:function(){
+//            var url = "./menu";
+            var _self = this;
+            $.ajax({
+                url:'http://192.168.38.12:8080/api/menu',
+                type:'post',
+                data:{
+                    typeId:0
+                },
+                success:function(data){
+					console.log(data)
+                    _self.menu = data;
+                }
+            })
+
+        },
+        updated:function(){
+            if(!this.collapse){
+                $('.slimScrollDiv,.fy-nav').css({"overflow":"visible"})
+            }else{
+                $('.slimScrollDiv,.fy-nav').css({"overflow":"hidden"})
+            }
+        },
+		computed:{
+			isFolder(){
+				  return this.model.children &&
+				        this.model.children.length
+			}
+		},
+        methods:{
+            change:function(){
+                nav.collapse?nav.collapse=false:nav.collapse=true;
+            },
+            menuChange:function(index,type,active){
+                var _self = this;
+                if(!active){
+                    var menu = new Array()
+                    for(var i = 0;i<this.menuTitle.length;i++){
+                        if(i == index){
+                            this.menuTitle[i].active = true
+                        }else{
+                            this.menuTitle[i].active = false
+                        }
+                        menu.push(this.menuTitle[i])
+                    }
+                    this.menuTitle = menu
+                    $.ajax({
+                        url:'/api/menu',
+                        type:'post',
+                        data:{
+                            typeId:type
+                        },
+                        success:function(data){
+                            _self.menu = data;
+                        }
+                    })
+                }
+            }
+        }
+    });
+
+    window.onload = function(){
+        var sidebar = new Sidebar();
+        sidebar.init();
+    };
+
+    var Sidebar = function(){
+
+    };
+
+    Sidebar.prototype = {
+        init:function(){
+            var that = this;
+            $('body').delegate('.site-menu-item a:first-child,.site-menu-sub a:first-child','click',function(){
+                if($(this).parent().hasClass('site-menu-item')){
+                    var index =$(this).parent().index();
+                    nav.menu = that.first(nav.menu,index)
+                }else{
+                    if($(this).next().length != 0){
+                        var value = $(this).find('span').eq(0).text();
+                        nav.menu = that.children(nav.menu,value);
+                    }else{
+                        $(document).attr("title",$(this).text());
+                        if(!nav.collapse){
+                            var index = $(this).parents('.site-menu-item').index();
+                            var array = new Array()
+                            for(var i = 0;i<nav.menu.length;i++){
+                                if(i == index){
+                                    nav.menu[i].open = false;
+                                }
+                                array.push(nav.menu[i])
+                            }
+                            nav.menu = array
+                        }
+                    }
+                }
+            })
+        },
+        children:function(obj,value){
+            var that = this;
+            var menu = new Array();
+            for(var i = 0;i<obj.length;i++){
+                if(obj[i].children){
+                    var child = that.children(obj[i].children,value);
+                    obj[i].children = child
+                }
+                if(obj[i].text == value){
+                    obj[i].open?obj[i].open=false:obj[i].open=true;
+                }
+                menu.push(obj[i])
+            }
+            return menu;
+        },
+        first:function(obj,index){
+            var menu = new Array();
+            for(var i = 0;i<obj.length;i++){
+                if(i != index){
+                    obj[i].open=false;
+                }else{
+                    obj[i].open==true? obj[i].open=false:obj[i].open=true;
+                }
+                menu.push(obj[i])
+            }
+            return menu;
+        },
+        name:''
+    };
+
+    $('.fy-nav').slimscroll({
+        height:'100%'
+    });
+
+</script>
+</body>
+</html>

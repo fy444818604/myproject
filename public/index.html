@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div id="app"  v-runoob:hello.a.b="message">
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    Vue.directive('runoob', {
+        bind: function (el, binding, vnode) {
+            console.log(vnode)
+            var s = JSON.stringify
+            el.innerHTML =
+                    'name: '       + s(binding.name) + '<br>' +
+                    'value: '      + s(binding.value) + '<br>' +
+                    'expression: ' + s(binding.expression) + '<br>' +
+                    'argument: '   + s(binding.arg) + '<br>' +
+                    'modifiers: '  + s(binding.modifiers) + '<br>' +
+                    'vnode keys: ' + Object.keys(vnode).join(', ')
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            message: '菜鸟教程!'
+        }
+    })
+</script>
+</body>
+</html>

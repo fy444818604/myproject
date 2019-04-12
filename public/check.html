@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>单选&复选</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/iCheck/skins/all.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .check-label{
+            cursor: pointer;
+            user-select: none;
+            margin-left: 5px;
+        }
+        .icheck-box ul>li{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h1 class="page-title">主题</h1>
+            <div class="box-model icheck-box">
+                <div class="row">
+                    <div class="col-md-6 pl0">
+                        <div class="row" v-for="item in themes">
+                            <h4 class="example-title mb20 capitalize">{{item.theme}}</h4>
+                            <div class="col-md-6">
+                                <ul>
+                                    <li v-for="(value,index) in item.list">
+                                        <input type="checkbox" :class="item.theme" :disabled="value.disabled" :checked="value.checked" :id="'check'+ value.value"><label :for="'check'+ value.value" class="check-label">{{value.name}}</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul>
+                                    <li v-for="(value,index) in item.list1">
+                                        <input type="radio" :class="item.theme" :disabled="value.disabled" :checked="value.checked" :id="'radio'+ value.value" :name="value.tip?'radio'+value.tip:false" ><label :for="'radio'+ value.value" class="check-label">{{value.name}}</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl0 para-table">
+                        <h4 class="example-title mb20 pl0">回调事件</h4>
+                        <table class="table table-bordered slick-para table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4 class="example-title mb20 pl0">方法</h4>
+                        <table class="table table-bordered slick-para table-striped">
+                            <thead>
+                            <tr>
+                                <th v-for="item in table1.thead">{{item}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in table1.tbody">
+                                <td v-for="item in item">
+                                    {{item}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/iCheck/icheck.min.js"></script>
+<script>
+
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'iCheck',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+
+    var table = new Vue({
+        el:'.para-table',
+        data:{
+            table:{
+                thead:['事件名称','使用时机'],
+                tbody:[
+                    {name:'ifClicked',time:'用户点击了自定义的输入框或与其相关联的label'},
+                    {name:'ifChanged',time:'输入框的 checked 或 disabled 状态改变了'},
+                    {name:'ifChecked',time:'输入框的状态变为 checked'},
+                    {name:'ifUnchecked',time:'checked 状态被移除'},
+                    {name:'ifDisabled',time:'输入框状态变为 disabled'},
+                    {name:'ifEnabled',time:'disabled 状态被移除'},
+                    {name:'ifCreated',time:'输入框被应用了iCheck样式'},
+                    {name:'ifDestroyed',time:'iCheck样式被移除'},
+                ]
+            },
+            table1:{
+                thead:['方法','作用'],
+                tbody:[
+                    {name:"$('input').iCheck('check');",time:'将输入框的状态设置为checked'},
+                    {name:"$('input').iCheck('uncheck');",time:'移除 checked 状态'},
+                    {name:"$('input').iCheck('toggle');",time:' toggle checked state'},
+                    {name:"$('input').iCheck('disable');",time:'将输入框的状态设置为 disabled'},
+                    {name:"$('input').iCheck('enable');",time:'移除 disabled 状态'},
+                    {name:"$('input').iCheck('update');",time:'apply input changes, which were done outside the plugin'},
+                    {name:"$('input').iCheck('destroy');",time:'移除iCheck样式'}
+                ]
+            }
+        }
+    })
+
+    var checkList = new Vue({
+        el:'.box-model',
+        data:{
+            themes:[
+                {
+                    theme:'minimal',
+                    list:[
+                        {value:'1',name:'checkbox1'},
+                        {value:'2',name:'checkbox2'},
+                        {value:'3',name:'disabled',disabled:true},
+                        {value:'4',name:'disabled&checked',disabled:true,checked:true}
+                    ],
+                    list1:[
+                        {value:'1',name:'radio1',tip:'1'},
+                        {value:'2',name:'radio2',tip:'1'},
+                        {value:'3',name:'disabled',disabled:true},
+                        {value:'4',name:'disabled&checked',disabled:true,checked:true}
+                    ]
+                },
+                {
+                    theme:'square',
+                    list:[
+                        {value:'5',name:'checkbox1'},
+                        {value:'6',name:'checkbox2'},
+                        {value:'7',name:'disabled',disabled:true},
+                        {value:'8',name:'disabled&checked',disabled:true,checked:true}
+                    ],
+                    list1:[
+                        {value:'5',name:'radio1',tip:'2'},
+                        {value:'6',name:'radio2',tip:'2'},
+                        {value:'7',name:'disabled',disabled:true},
+                        {value:'8',name:'disabled&checked',disabled:true,checked:true}
+                    ]
+                },
+                {
+                    theme:'flat',
+                    list:[
+                        {value:'9',name:'checkbox1'},
+                        {value:'10',name:'checkbox2'},
+                        {value:'11',name:'disabled',disabled:true},
+                        {value:'12',name:'disabled&checked',disabled:true,checked:true}
+                    ],
+                    list1:[
+                        {value:'9',name:'radio1',tip:'3'},
+                        {value:'10',name:'radio2',tip:'3'},
+                        {value:'11',name:'disabled',disabled:true},
+                        {value:'12',name:'disabled&checked',disabled:true,checked:true}
+                    ]
+                },
+                {
+                    theme:'polaris',
+                    list:[
+                        {value:'13',name:'checkbox1'},
+                        {value:'14',name:'checkbox2'},
+                        {value:'15',name:'disabled',disabled:true},
+                        {value:'16',name:'disabled&checked',disabled:true,checked:true}
+                    ],
+                    list1:[
+                        {value:'13',name:'radio1',tip:'4'},
+                        {value:'14',name:'radio2',tip:'4'},
+                        {value:'15',name:'disabled',disabled:true},
+                        {value:'16',name:'disabled&checked',disabled:true,checked:true}
+                    ]
+                },
+                {
+                    theme:'futurico',
+                    list:[
+                        {value:'17',name:'checkbox1'},
+                        {value:'18',name:'checkbox2'},
+                        {value:'19',name:'disabled',disabled:true},
+                        {value:'20',name:'disabled&checked',disabled:true,checked:true}
+                    ],
+                    list1:[
+                        {value:'17',name:'radio1',tip:'5'},
+                        {value:'18',name:'radio2',tip:'5'},
+                        {value:'19',name:'disabled',disabled:true},
+                        {value:'20',name:'disabled&checked',disabled:true,checked:true}
+                    ]
+                }
+            ]
+        },
+        mounted:function(){
+           for(var i = 0;i < this.themes.length; i++){
+               $("."+this.themes[i].theme).iCheck({
+                   checkboxClass: 'icheckbox_'+this.themes[i].theme,
+                   radioClass: 'iradio_'+this.themes[i].theme,
+                   increaseArea: '20%'
+               });
+           }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

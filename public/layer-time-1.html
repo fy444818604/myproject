@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>功能演示</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/layui-v2.3.0-rc1/layui/css/layui.css"/>
+    <link rel="stylesheet" href="stylesheet/layui-custom.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}</h1>
+        <div class="page-title-btn-group">
+            <button class="btn page-title-btn btn-icon" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <h4 class="example-title-3">常规用法</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">中文版</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">国际版</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">常用选择器</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid130>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期时间选择器</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年选择器</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test2" placeholder="yyyy">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年月选择器</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test3" placeholder="yyyy-MM">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">时间选择器</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test4" placeholder="HH:mm:ss">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">范围选择</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid116>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test7" placeholder=" - ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年月范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test8" placeholder=" - ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">时间范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test9" placeholder=" - ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期时间范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test10" placeholder=" - ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">自定义格式</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form" wid116>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test11" placeholder="yyyy年MM月dd日">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test12" placeholder="dd/MM/yyyy">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择月份</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test13" placeholder="yyyyMMdd">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test14" placeholder="H点m分">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test15" placeholder=" ~ ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">请选择范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test16" placeholder="开始 到 结束">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <h4 class="example-title-3">同时绑定多个</h4>
+            <div class="box-model" pda15>
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+                        </div>
+                        <div class="layui-inline">
+                            <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+                        </div>
+                        <div class="layui-inline">
+                            <input type="text" class="layui-input test-item" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/layui-v2.3.0-rc1/layui/layui.js"></script>
+<script>
+    var pageHead = new Vue({
+        el:'.page-header',
+        data:{
+            pageTitle:'日期时间',
+            btnGroup:[
+                {icon:'fa-check'},
+                {icon:'fa-close'},
+                {icon:'fa-cog'}
+            ]
+        }
+    });
+
+    layui.use(['laydate'],function(){
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#test1'
+        });
+        //国际版
+        laydate.render({
+            elem: '#test1-1'
+            ,lang: 'en'
+        });
+
+        //年选择器
+        laydate.render({
+            elem: '#test2'
+            ,type: 'year'
+        });
+
+        //年月选择器
+        laydate.render({
+            elem: '#test3'
+            ,type: 'month'
+        });
+
+        //时间选择器
+        laydate.render({
+            elem: '#test4'
+            ,type: 'time'
+        });
+
+        //日期时间选择器
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+        });
+
+        //日期范围
+        laydate.render({
+            elem: '#test6'
+            ,range: true
+        });
+
+        //年范围
+        laydate.render({
+            elem: '#test7'
+            ,type: 'year'
+            ,range: true
+        });
+
+        //年月范围
+        laydate.render({
+            elem: '#test8'
+            ,type: 'month'
+            ,range: true
+        });
+
+        //时间范围
+        laydate.render({
+            elem: '#test9'
+            ,type: 'time'
+            ,range: true
+        });
+
+        //日期时间范围
+        laydate.render({
+            elem: '#test10'
+            ,type: 'datetime'
+            ,range: true
+        });
+
+        //自定义格式
+        laydate.render({
+            elem: '#test11'
+            ,format: 'yyyy年MM月dd日'
+        });
+        laydate.render({
+            elem: '#test12'
+            ,format: 'dd/MM/yyyy'
+        });
+        laydate.render({
+            elem: '#test13'
+            ,format: 'yyyyMMdd'
+        });
+        laydate.render({
+            elem: '#test14'
+            ,type: 'time'
+            ,format: 'H点m分'
+        });
+        laydate.render({
+            elem: '#test15'
+            ,type: 'month'
+            ,range: '~'
+            ,format: 'yyyy-MM'
+        });
+        laydate.render({
+            elem: '#test16'
+            ,type: 'datetime'
+            ,range: '到'
+            ,format: 'yyyy年M月d日H时m分s秒'
+        });
+
+        //同时绑定多个
+        lay('.test-item').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+            });
+        });
+    })
+</script>
+</html>

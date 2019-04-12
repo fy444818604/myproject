@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1065627_8upbg780dcm.css"/>
+    <style>
+        /*body,html{*/
+            /*margin: 0;*/
+            /*padding: 0;*/
+            /*height: 100%;*/
+            /*width: 100%;*/
+        /*}*/
+
+
+        /*body {background:black; }*/
+    </style>
+</head>
+<body>
+<div id="container">
+    <i class="iconfont iconearth" style="font-size: 18px;color:red"></i>
+    <anchored-heading v-for="(item,index) in 6" :level="index + 1">hello world</anchored-heading>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/vuex.js"></script>
+<script type="text/javascript" src="plugins/vue-router.js"></script>
+<script>
+    var getChildrenTextContent = function (children) {
+        return children.map(function (node) {
+            return node.children
+                    ? getChildrenTextContent(node.children)
+                    : node.text
+        }).join('')
+    };
+
+    Vue.component('anchored-heading', {
+        render: function (createElement) {
+            // 创建 kebab-case 风格的ID
+            console.log(this.$slots.default);
+            var headingId = getChildrenTextContent(this.$slots.default)
+                    .toLowerCase()
+                    .replace(/\W+/g, '-')
+                    .replace(/(^\-|\-$)/g, '');
+
+            return createElement(
+                    'h' + this.level,
+                    [
+                        createElement('a', {
+                            attrs: {
+                                name: headingId,
+                                href: '#' + headingId
+                            },
+                            'class': {
+                                foo: true,
+                                bar: false
+                            },
+                            on: {
+                                click: this.clickHandler
+                            }
+                        }, this.$slots.default)
+                    ]
+            )
+        },
+        props: {
+            level: {
+                type: Number,
+                required: true
+            }
+        },
+        methods:{
+            clickHandler:function(event){
+                console.log(event.target)
+            }
+        }
+    })
+
+    new Vue({
+        el: '#container'
+    });
+
+    var aaa = x => ({ foo: x });
+    console.log(aaa(6))
+    let [x, y] = [1, 2, 3];
+    [x,y] = [y,x]
+    console.log(x)
+</script>
+</body>
+</html>

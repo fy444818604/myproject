@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>DataTables</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/DataTables-1.10.15/media/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="plugins/DataTables-1.10.15/media/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .alert {
+            padding: 10px 20px;
+            margin-bottom: 10px;
+        }
+        .alert-warning {
+            color: #f2a654;
+            background-color: rgba(255,243,230,.8);
+            border-color: #fff3e6;
+        }
+        .table.dataTable.no-footer{
+            border-bottom: 1px solid #e4eaec;
+        }
+        .dataTables_wrapper.no-footer .dataTables_scrollBody{
+            border-bottom: 1px solid #e4eaec;
+        }
+        .table.table-bordered.dataTable th, table.table-bordered.dataTable td{
+            border-left-width: 0!important;
+        }
+        .table.table-bordered.dataTable th{
+            border-left-width: 0!important;
+            border-top-width: 0!important;
+            border-bottom-width: 0!important;
+        }
+        .dataTable{
+            width: 100% !important;
+        }
+        .dataTables_scrollHeadInner{
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}<span id="status"></span></h1>
+        <div class="page-title-btn-group">
+            <a class="btn page-title-btn btn-icon btn-block btn-side" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+                {{item.name}}
+            </a>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <div class="panel">
+                <div class="panel-body">
+                    <h4 class="example-title-2">简单配置</h4>
+                    <div class="alert alert-warning" role="alert">
+                        <p>DataTables 默认情况已启用一些功能，搜索、 排序、 分页等功能已经开启，如本示例所示</p>
+                    </div>
+                    <table class="table table-bordered table-hover dataTable table-striped width-full text-nowrap" id="dataTableExample" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th v-for="item in thead">{{item}}</th>
+                        </tr>
+                        </thead>
+                        <!--<tfoot>-->
+                        <!--<tr>-->
+                            <!--<th v-for="item in tfoot">{{item}}</th>-->
+                        <!--</tr>-->
+                        <!--</tfoot>-->
+                        <tbody>
+                        <tr v-for="item in tbody">
+                            <td v-for="item in item">{{item}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/DataTables-1.10.15/media/js/jquery.dataTables.min.js"></script>
+<script src="plugins/jQuery-slimScroll-master/jquery.slimscroll.min.js"></script>
+<script>
+
+
+    $(function(){
+        $.ajax({
+            url:'./tableMessage',
+            type : "post",
+            success:function(data){
+                console.log(data)
+                var tbodyData = JSON.parse(data);
+                var table = new Vue({
+                    el:'.table',
+                    data:{
+                        thead:['姓名','职位','工作地点','年龄','入职时间','年薪'],
+                        tfoot:['姓名','职位','工作地点','年龄','入职时间','年薪'],
+                        tbody:tbodyData
+                    },
+                    beforeCreate:function(){
+//                this.showData();
+                        //需要执行的方法可以在mounted中进行触发，其获取的数据可以赋到data中后，可以放在前面进行渲染
+                    },
+                    mounted:function(){
+                        $('#dataTableExample').DataTable({
+                            "lengthChange":false,
+                            "info":false,
+                            "ordering":false,
+                            "paging":false,
+                            "searching":false,
+                            "scrollY": "500px",
+//                            "language": {
+//                                "info": "第 _START_ 至 _END_ 项，共 _TOTAL_ 项",
+//                                "lengthMenu":"显示 _MENU_ 条记录"
+//                            },
+                            "deferRender": true
+                        });
+                        $('.dataTables_scrollBody').slimScroll({
+                            height: '500px'
+                        });
+                    }
+                });
+            }
+        });
+        var pageHead = new Vue({
+            el:'.page-header',
+            data:{
+                pageTitle:'DataTables 基本初始化',
+                btnGroup:[
+//                {icon:'fa-check'},
+//                {icon:'fa-close'},
+                    {icon:'fa-cog',name:'官网'}
+                ]
+            }
+        });
+
+    });
+
+//
+//    var funcs = [];
+//    for (var i = 0; i < 10; i++) {
+//        funcs.push(function() { console.log(i) })
+//    }
+//    funcs.forEach(function(func) {
+//        func()
+//    })
+    const PI = 3.141592657;
+
+    function aa() {
+        if(false) {
+            var test = 'hello man'
+        } else {
+            console.log(test)
+        }
+    }
+
+    [1,2,3].map((function(x){
+        console.log(x)
+        return x + 1
+    }).bind(this))
+</script>
+</body>
+</html>

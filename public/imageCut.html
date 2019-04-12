@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片裁剪</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/cropper-master/docs/css/cropper.css"/>
+    <link rel="stylesheet" href="plugins/layui-v2.3.0-rc1/layui/css/layui.css"/>
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .img-preview, .img-preview1 {
+            height: 288px;
+            width: 384px;
+            overflow: hidden;
+        }
+
+        .img-preview2 {
+            float: left;
+            height: 144px;
+            width: 192px;
+        }
+
+        .img-preview3 {
+            float: left;
+            height: 96px;
+            width: 128px;
+        }
+
+        .img-preview4 {
+            float: left;
+            height: 48px;
+            width: 64px;
+        }
+
+        .cut-view {
+            margin-bottom: 20px;
+        }
+
+        .docs-data{
+            width: 384px;
+        }
+        .input-group {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .input-group-text{
+            text-align: center;
+            white-space: nowrap;
+            min-width: 5rem;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+        }
+        .input-group-prepend{
+            min-width: 100px;
+        }
+        .input-group-prepend {
+            margin-right: -1px;
+        }
+        .input-group-append, .input-group-prepend {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        .docs-data .input-group-prepend .input-group-text {
+            min-width: 7rem;
+        }
+        .input-group>.custom-select:not(:first-child), .input-group>.form-control:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+            position: relative;
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
+        .input-group-append, .input-group-prepend {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="page-header">
+        <h1 class="page-title">{{pageTitle}}<span id="status"></span></h1>
+
+        <div class="page-title-btn-group">
+            <a class="btn page-title-btn btn-icon btn-block btn-side" v-for="item in btnGroup">
+                <i class="fa fa-position" :class="item.icon"></i>
+                {{item.name}}
+            </a>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="box">
+            <div class="panel">
+                <div class="panel-body">
+                    <h4 class="example-title-2">简单配置</h4>
+
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-md-9 pd0">
+                                <div>
+                                    <img id="image"
+                                         src="http://cdn.admui.com/demo/iframe/1.1.0/images/photos/animal-4.jpg">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="img-preview">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <h4 class="example-title-2">全部配置</h4>
+
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-md-9 pd0">
+                                <div style="height: 540px">
+                                    <img id="image1" src="http://cdn.admui.com/demo/iframe/1.1.0/images/photos/animal-4.jpg">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="cut-view clearfix">
+                                    <div class="img-preview1">
+
+                                    </div>
+
+                                    <div class="img-preview1 img-preview2">
+
+                                    </div>
+                                    <div class="img-preview1 img-preview3">
+
+                                    </div>
+                                    <div class="img-preview1 img-preview4">
+
+                                    </div>
+                                </div>
+                                <div class="docs-data">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataX">X</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataX" placeholder="x">
+                                        <span class="input-group-append">
+                                          <span class="input-group-text">px</span>
+                                        </span>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataY">Y</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataY" placeholder="y">
+                                        <span class="input-group-append">
+                                          <span class="input-group-text">px</span>
+                                        </span>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataWidth">Width</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataWidth" placeholder="width">
+                                        <span class="input-group-append">
+                                          <span class="input-group-text">px</span>
+                                        </span>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataHeight">Height</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataHeight" placeholder="height">
+                                        <span class="input-group-append">
+                                          <span class="input-group-text">px</span>
+                                        </span>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataRotate">Rotate</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataRotate" placeholder="rotate">
+                                        <span class="input-group-append">
+                                          <span class="input-group-text">deg</span>
+                                        </span>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataScaleX">ScaleX</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataScaleX" placeholder="scaleX">
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-prepend">
+                                          <label class="input-group-text" for="dataScaleY">ScaleY</label>
+                                        </span>
+                                        <input type="text" class="form-control" id="dataScaleY" placeholder="scaleY">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example cut-btn-group">
+                        <button class="btn page-title-btn btn-icon btn-primary btn-side" v-for="item in cutBtn"
+                                :title="item.title" :data-original-title="item.dataTitle">
+                            <i class="fa fa-position" :class="item.icon"></i>
+                        </button>
+                        <label for="inputImage" class="btn btn-icon btn-primary btn-side">
+                            <input type="file" id="inputImage" class="sr-only"
+                                   accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff"/>
+                            <i class="fa fa-position fa-upload"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script type="text/javascript" src="plugins/layui-v2.3.0-rc1/layui/layui.js"></script>
+<script type="text/javascript" src="plugins/cropper-master/docs/js/cropper.js"></script>
+<script>
+    var pageHead = new Vue({
+        el: '.page-header',
+        data: {
+            pageTitle: '图片裁剪',
+            btnGroup: [
+                {icon: 'fa-cog', name: '官网'}
+            ]
+        }
+    });
+    var btnGroup = new Vue({
+        el: '.cut-btn-group',
+        data: {
+            cutBtn: [
+                {icon: 'fa-arrows', title: '移动', dataTitle: "$('#image1').cropper('setDragMode', 'move')"},
+                {icon: 'fa-crop', title: '裁剪', dataTitle: "$('#image1').cropper('setDragMode', 'crop')"},
+                {icon: 'fa-search-plus', title: '放大', dataTitle: "$('#image1').cropper('zoom', 0.1)"},
+                {icon: 'fa-search-minus', title: '缩小', dataTitle: "$('#image1').cropper('zoom', -0.1)"},
+                {icon: 'fa-arrow-left', title: '左移', dataTitle: "$('#image1').cropper('move', -10,0)"},
+                {icon: 'fa-arrow-right', title: '右移', dataTitle: "$('#image1').cropper('move', 10,0)"},
+                {icon: 'fa-arrow-up', title: '上移', dataTitle: "$('#image1').cropper('move', 0,-10)"},
+                {icon: 'fa-arrow-down', title: '下移', dataTitle: "$('#image1').cropper('move', 0,10)"},
+                {icon: 'fa-rotate-left', title: '逆时针旋转', dataTitle: "$('#image1').cropper('rotate', -45)"},
+                {icon: 'fa-rotate-right', title: '顺时针旋转', dataTitle: "$('#image1').cropper('rotate', 45)"},
+//                {icon:'fa-arrows-h',title:'裁剪'},
+//                {icon:'fa-arrows-v',title:'裁剪'},
+//                {icon:'fa-check',title:'裁剪'},
+//                {icon:'fa-remove',title:'裁剪'},
+//                {icon:'fa-lock',title:'裁剪'},
+//                {icon:'fa-unlock',title:'裁剪'},
+                {icon: 'fa-refresh', title: '重置', dataTitle: "$('#image1').cropper('reset')"},
+//                {icon:'fa-upload',title:'导入'},
+                {icon: 'fa-power-off', title: '复原', dataTitle: "$('#image1').cropper('destroy')"},
+                {icon: 'fa-area-chart', title: '获取图片'}
+            ]
+        }
+    })
+    var $image = $('#image');
+    var $image1 = $('#image1');
+    var layerWidth = 0;
+    $image.cropper({
+        aspectRatio: 4 / 3,
+        preview: ".img-preview",
+        imageSmoothingEnabled: true,
+        crop: function (event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+        }
+    });
+    $image1.cropper({
+        aspectRatio: 16 / 9,
+        preview: ".img-preview1",
+        imageSmoothingEnabled: true,
+        crop: function (event) {
+            var data = [];
+            data.push(event.detail.x);
+            data.push(event.detail.y);
+            data.push(event.detail.width);
+            data.push(event.detail.height);
+            data.push(event.detail.rotate);
+            data.push(event.detail.scaleX);
+            data.push(event.detail.scaleY);
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+//            console.log(event.detail.width);
+//            console.log(event.detail.height);
+//            console.log(event.detail.rotate);
+//            console.log(event.detail.scaleX);
+//            console.log(event.detail.scaleY);
+            $('.docs-data .input-group').each(function(index,val){
+                $(this).find('.form-control').val(data[index])
+            })
+            layerWidth = event.detail.width
+        }
+    });
+    var cropper = $image1.data('cropper');
+
+
+    var layer;
+    layui.use("layer", function () {
+        layer = layui.layer;
+        layer.config({
+            extend: 'skin/normal.css', //加载新皮肤
+        });
+    });
+
+    $('.fa-area-chart').parent().click(function () {
+        var cas = $('#image1').cropper('getCroppedCanvas');
+        var base64url = cas.toDataURL('image/jpeg');
+        cas.toBlob(function (e) {
+            console.log(e);  //生成Blob的图片格式
+        })
+        console.log(base64url); //生成base64图片的格式
+        layer.open({
+            shade: false,
+            title: '生成图片',
+            offset: '100px',
+            area: (layerWidth + 40) + 'px',
+            btn: false,
+            content: '<div class="cavans"></div>',
+            success: function () {
+                $('.cavans').html(cas);  //在body显示出canvas元素
+            }
+        });
+    });
+    // 图片导入
+    var inputImage = document.getElementById('inputImage');
+    var URL = window.URL || window.webkitURL;
+    var blobURL;
+
+    if (URL) {
+        inputImage.onchange = function () {
+            var files = this.files;
+            var file;
+            console.log(cropper);
+            if (cropper && files && files.length) {
+                file = files[0];
+
+                if (/^image\/\w+/.test(file.type)) {
+                    blobURL = URL.createObjectURL(file);
+                    cropper.reset().replace(blobURL);
+                    console.log(blobURL)
+                } else {
+                    window.alert('请选择图片文件');
+                }
+            }
+            $(inputImage).find("img").hide();
+        };
+    } else {
+//        inputImage.disabled = true;
+//        inputImage.parentNode.className += ' disabled';
+    }
+
+    $('.cut-btn-group button').click(function () {
+        var methods = $(this).attr('data-original-title');
+        eval(methods)
+    })
+
+
+
+</script>
+</body>
+</html>

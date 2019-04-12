@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>组件测试</title>
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/webicons/2.0.0/webicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet/style.css"/>
+    <style>
+        .triangle_border_down{
+            display:inline-block;
+            width:0;
+            height:0;
+            border-width:5px 5px 0;
+            border-style:solid;
+            border-color:#333 transparent transparent;/*黄 透明 透明 */
+            position:absolute;
+            top:10px;
+            cursor: pointer;
+        }
+        .triangle_border_right{
+            display:inline-block;
+            width:0;
+            height:0;
+            border-width:5px 0 5px 5px;
+            border-style:solid;
+            border-color:transparent transparent transparent #333;/*透明 透明 透明 黄*/
+            position:absolute;
+            top:7px;
+            left: 4px;
+            cursor: pointer;
+        }
+        #tree ul li{
+            line-height: 24px;
+        }
+        #tree ul{
+            margin-left: 10px;
+        }
+        .page-container-left ul li{
+            position: relative;
+        }
+        .tree-name{
+            margin-left: 16px;
+            cursor: pointer;
+        }
+        .item{
+            position: relative;
+        }
+        .hidden{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<script type="text/x-template" id="item-template">
+    <li>
+        <div
+                :class="{bold: isFolder}"
+                @dblclick="changeType">
+            <span @click="toggle" :class="[isFolder?'':'hidden',open?'triangle_border_down':'triangle_border_right']"></span>
+            <span class="tree-name">{{ model.name }}</span>
+        </div>
+        <ul v-show="open" v-if="isFolder">
+            <item
+                    class="item"
+                    v-for="(model, index) in model.children"
+                    :key="index"
+                    :model="model">
+            </item>
+        </ul>
+    </li>
+</script>
+<ul id="tree">
+    <item
+            class="item"
+            :model="treeData">
+    </item>
+</ul>
+
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/vue.js"></script>
+<script>
+    Vue.component('item', {
+        template: '#item-template',
+        props: {
+            model: Object
+        },
+        data: function () {
+            return {
+                open: false
+            }
+        },
+        computed: {
+            isFolder: function () {
+                return this.model.children &&
+                        this.model.children.length
+            }
+        },
+        methods: {
+            toggle: function () {
+                if (this.isFolder) {
+                    this.open = !this.open
+                }
+            },
+            changeType: function () {
+                console.log(this)
+                if (!this.isFolder) {
+                    Vue.set(this.model, 'children', [])
+                    this.open = true
+                }
+            }
+        }
+    });
+
+    var formLayer1 = new Vue({
+        el:'#tree',
+        data:{
+            treeData: {
+                id:0,
+                name:'组织机构',
+                children:[
+                    {
+                        id:1,
+                        name:'组织机构1',
+                        children:[
+                            {
+                                id:11,
+                                name:'组织机构11',
+                            }
+                        ]
+                    },
+                    {
+                        id:2,
+                        name:'组织机构2',
+                        children:[
+                            {
+                                id:21,
+                                name:'组织机构21'
+                            }
+                        ]
+                    },
+                    {
+                        id:3,
+                        name:'组织机构3',
+                        children:[
+                            {
+                                id:31,
+                                name:'组织机构31'
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+</script>
+</body>
+</html>
